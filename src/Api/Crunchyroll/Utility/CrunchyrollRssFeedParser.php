@@ -1,10 +1,10 @@
 <?php
 
-namespace Samihsoylu\Crunchyroll;
+namespace Samihsoylu\Crunchyroll\Api\Crunchyroll\Utility;
 
 use SimpleXMLElement;
 
-final class RssFeedParser
+final class CrunchyrollRssFeedParser
 {
     private SimpleXMLElement $xmlObject;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Samihsoylu\Crunchyroll;
+namespace Samihsoylu\Crunchyroll\Api\Crunchyroll\Entity;
 
 use DateTimeImmutable;
 use SimpleXMLElement;
@@ -13,14 +13,15 @@ final class AnimeEpisode {
     private string $description;
     private string $seriesTitle;
     private string $episodeTitle;
-    private string $episodeNumber;
+    private int $seasonNumber;
+    private int $episodeNumber;
     private string $duration;
     private string $publisher;
     private string $publishedDate;
 
     private function __construct() {}
 
-    public static function fromFeed(SimpleXMLElement $item): self
+    public static function fromSimpleXmlElement(SimpleXMLElement $item): self
     {
         $instance = new self();
 
@@ -33,12 +34,30 @@ final class AnimeEpisode {
 
         $instance->seriesTitle = (string) $crunchyroll->seriesTitle;
         $instance->episodeTitle = (string) $crunchyroll->episodeTitle;
-        $instance->episodeNumber = (string) $crunchyroll->episodeNumber;
+        $instance->episodeNumber = (int) $crunchyroll->episodeNumber;
+        $instance->seasonNumber = (int) ($crunchyroll->season ?? 1);
         $instance->duration = (string) $crunchyroll->duration;
         $instance->publisher = (string) $crunchyroll->publisher;
         $instance->publishedDate = (string) $crunchyroll->premiumPubDate;
 
         return $instance;
+    }
+
+    /**
+     * @param array<string, scalar> $struct
+     * @return self
+     */
+    public static function fromArray(array $struct): self
+    {
+        $self = new self();
+
+        foreach ($struct as $fieldName => $fieldValue) {
+            if (property_exists($self, $fieldName)) {
+                $self->{$fieldName} = $fieldValue;
+            }
+        }
+
+        return $self;
     }
 
     public function getTitle(): string
@@ -66,9 +85,14 @@ final class AnimeEpisode {
         return $this->episodeTitle;
     }
 
-    public function getEpisodeNumber(): string
+    public function getEpisodeNumber(): int
     {
         return $this->episodeNumber;
+    }
+
+    public function getSeasonNumber(): int
+    {
+        return $this->seasonNumber;
     }
 
     public function getDuration(): string
