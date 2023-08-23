@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Samihsoylu\Crunchyroll\Tests\TestDouble\Spy;
 
+use PHPUnit\Framework\TestCase;
 use Samihsoylu\Crunchyroll\Api\Notion\Repository\DatabaseRepositoryInterface;
-use Samihsoylu\Crunchyroll\Tests\TestCase;
 
 final class SpyDatabaseRepository extends TestCase implements DatabaseRepositoryInterface
 {
