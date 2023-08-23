@@ -32,6 +32,7 @@
         }
     },
     "require-dev": {
-        "pestphp/pest": "^2.16"
+        "pestphp/pest": "^2.16",
+        "symfony/var-dumper": "^6.3"
     }
 }
