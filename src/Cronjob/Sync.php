@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Samihsoylu\Crunchyroll\Cronjob;
+namespace SamihSoylu\Crunchyroll\Cronjob;
 
-use Samihsoylu\Crunchyroll\Api\Crunchyroll\CrunchyrollApiClient;
-use Samihsoylu\Crunchyroll\Api\Notion\NotionApiClient;
+use SamihSoylu\Crunchyroll\Api\Crunchyroll\CrunchyrollApiClient;
+use SamihSoylu\Crunchyroll\Api\Notion\NotionApiClient;
 
 final class Sync
 {

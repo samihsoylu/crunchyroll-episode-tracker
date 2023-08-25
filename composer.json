@@ -4,8 +4,8 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Samihsoylu\\Crunchyroll\\": "src/",
-            "Samihsoylu\\Crunchyroll\\Tests\\": "tests/"
+            "SamihSoylu\\Crunchyroll\\": "src/",
+            "SamihSoylu\\Crunchyroll\\Tests\\": "tests/"
         }
     },
     "authors": [

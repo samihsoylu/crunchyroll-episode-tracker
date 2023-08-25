@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Samihsoylu\Crunchyroll\Api\Notion\Repository;
+namespace SamihSoylu\Crunchyroll\Api\Notion\Repository;
 
 use Brd6\NotionSdkPhp\Client;
 use Brd6\NotionSdkPhp\Resource\Database;

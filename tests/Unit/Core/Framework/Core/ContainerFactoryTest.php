@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 use Psr\Container\ContainerInterface;
-use Samihsoylu\Crunchyroll\Core\Framework\AppEnv;
-use Samihsoylu\Crunchyroll\Core\Framework\Core\ContainerFactory;
-use Samihsoylu\Crunchyroll\Tests\TestDouble\Dummy\DummyObjectInterface;
-use Samihsoylu\Crunchyroll\Tests\TestDouble\Dummy\DummyProdObject;
-use Samihsoylu\Crunchyroll\Tests\TestDouble\Dummy\DummyTestObject;
+use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
+use SamihSoylu\Crunchyroll\Core\Framework\Core\ContainerFactory;
+use SamihSoylu\Crunchyroll\Tests\TestDouble\Dummy\DummyObjectInterface;
+use SamihSoylu\Crunchyroll\Tests\TestDouble\Dummy\DummyProdObject;
+use SamihSoylu\Crunchyroll\Tests\TestDouble\Dummy\DummyTestObject;
 
 it('it should create a container', function() {
     $configDir = __DIR__ . '/config';

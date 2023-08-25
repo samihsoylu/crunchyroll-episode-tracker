@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use DI\Container;
-use Samihsoylu\Crunchyroll\Core\Framework\AppEnv;
+use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
 
 return function (Container $container) {
     $container->set(AppEnv::class, function() {

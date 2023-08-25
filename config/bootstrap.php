@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use Brd6\NotionSdkPhp\Client;
 use Psr\Container\ContainerInterface;
-use Samihsoylu\Crunchyroll\Core\Framework\AppEnv;
-use Samihsoylu\Crunchyroll\Core\Framework\Core\ContainerFactory;
+use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
+use SamihSoylu\Crunchyroll\Core\Framework\Core\ContainerFactory;
 use function Sentry\init;
 
 $_ENV['ROOT_DIR'] = dirname(__DIR__);

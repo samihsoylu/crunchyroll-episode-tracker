@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Psr\Container\ContainerInterface;
-use Samihsoylu\Crunchyroll\Core\Framework\AppEnv;
-use Samihsoylu\Crunchyroll\Core\Framework\Core\Kernel;
+use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
+use SamihSoylu\Crunchyroll\Core\Framework\Core\Kernel;
 
 it('should boot up kernel', function () {
     $kernel = Kernel::boot();

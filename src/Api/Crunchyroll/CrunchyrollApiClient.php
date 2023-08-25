@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Samihsoylu\Crunchyroll\Api\Crunchyroll;
+namespace SamihSoylu\Crunchyroll\Api\Crunchyroll;
 
-use Samihsoylu\Crunchyroll\Api\Crunchyroll\Repository\AnimeEpisodeRepository;
-use Samihsoylu\Crunchyroll\Api\Crunchyroll\Repository\AnimeEpisodeRepositoryInterface;
+use SamihSoylu\Crunchyroll\Api\Crunchyroll\Repository\AnimeEpisodeRepository;
+use SamihSoylu\Crunchyroll\Api\Crunchyroll\Repository\AnimeEpisodeRepositoryInterface;
 
 final class CrunchyrollApiClient
 {

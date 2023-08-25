@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Samihsoylu\Crunchyroll\Core\Framework\AppEnv;
+use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
 
 it('should be prod', function () {
     $env = AppEnv::PROD;

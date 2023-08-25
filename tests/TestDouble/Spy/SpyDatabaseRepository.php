@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Samihsoylu\Crunchyroll\Tests\TestDouble\Spy;
+namespace SamihSoylu\Crunchyroll\Tests\TestDouble\Spy;
 
 use PHPUnit\Framework\TestCase;
 use Samihsoylu\Crunchyroll\Api\Notion\Repository\DatabaseRepositoryInterface;

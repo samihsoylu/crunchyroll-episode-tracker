@@ -1,6 +1,6 @@
 <?php
 
-namespace Samihsoylu\Crunchyroll\Api\Crunchyroll\Utility;
+namespace SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility;
 
 use SimpleXMLElement;
 

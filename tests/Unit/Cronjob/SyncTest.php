@@ -4,11 +4,11 @@
 // data retrieved from crunchyroll is processed properly
 // data send is invoked to notion.
 
-use Samihsoylu\Crunchyroll\Api\Crunchyroll\CrunchyrollApiClient;
-use Samihsoylu\Crunchyroll\Api\Notion\NotionApiClient;
-use Samihsoylu\Crunchyroll\Cronjob\Sync;
-use Samihsoylu\Crunchyroll\Tests\TestDouble\Fake\FakeAnimeEpisodeRepository;
-use Samihsoylu\Crunchyroll\Tests\TestDouble\Spy\SpyDatabaseRepository;
+use SamihSoylu\Crunchyroll\Api\Crunchyroll\CrunchyrollApiClient;
+use SamihSoylu\Crunchyroll\Api\Notion\NotionApiClient;
+use SamihSoylu\Crunchyroll\Cronjob\Sync;
+use SamihSoylu\Crunchyroll\Tests\TestDouble\Fake\FakeAnimeEpisodeRepository;
+use SamihSoylu\Crunchyroll\Tests\TestDouble\Spy\SpyDatabaseRepository;
 
 test('sync', function () {
     $spyRepository = new SpyDatabaseRepository();

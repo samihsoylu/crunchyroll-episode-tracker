@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Samihsoylu\Crunchyroll\Core\Framework\Core;
+namespace SamihSoylu\Crunchyroll\Core\Framework\Core;
 
 use DI\Container;
 use LogicException;
-use Samihsoylu\Crunchyroll\Core\Framework\AppEnv;
+use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
 
 final readonly class ContainerFactory
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Samihsoylu\Crunchyroll\Tests\TestDouble\Fake;
+namespace SamihSoylu\Crunchyroll\Tests\TestDouble\Fake;
 
-use Samihsoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
-use Samihsoylu\Crunchyroll\Api\Crunchyroll\Repository\AnimeEpisodeRepositoryInterface;
+use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
+use SamihSoylu\Crunchyroll\Api\Crunchyroll\Repository\AnimeEpisodeRepositoryInterface;
 
 final class FakeAnimeEpisodeRepository implements AnimeEpisodeRepositoryInterface
 {

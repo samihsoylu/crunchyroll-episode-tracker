@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Samihsoylu\Crunchyroll\Core\Framework\Core\Kernel;
-use Samihsoylu\Crunchyroll\Cronjob\Sync;
+use SamihSoylu\Crunchyroll\Core\Framework\Core\Kernel;
+use SamihSoylu\Crunchyroll\Cronjob\Sync;
 
 require __DIR__ . '/config/bootstrap.php';
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Samihsoylu\Crunchyroll\Api\Crunchyroll\Entity;
+namespace SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity;
 
 use DateTimeImmutable;
 use SimpleXMLElement;
