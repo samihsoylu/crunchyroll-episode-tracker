@@ -9,17 +9,17 @@ use SamihSoylu\Crunchyroll\Tests\TestDouble\Dummy\DummyObjectInterface;
 use SamihSoylu\Crunchyroll\Tests\TestDouble\Dummy\DummyProdObject;
 use SamihSoylu\Crunchyroll\Tests\TestDouble\Dummy\DummyTestObject;
 
-it('it should create a container', function() {
-    $configDir = __DIR__ . '/config';
+it('should create a container', function() {
+    $configDir = $this->kernel->rootDir . '/tests/TestDouble/Fake/Core/Framework/Container/config';
 
-    $containerFactory = new ContainerFactory($configDir, AppEnv::DEV);
+    $containerFactory = new ContainerFactory($configDir, AppEnv::TEST);
     $container = $containerFactory->create();
 
     expect($container)->toBeInstanceOf(ContainerInterface::class);
 });
 
 it('should load container configurations based on the app environment', function($environment, $expectedInstance) {
-    $configDir = $_ENV['ROOT_DIR'] . '/tests/TestDouble/Fake/Core/Framework/Container/config';
+    $configDir = $this->kernel->rootDir . '/tests/TestDouble/Fake/Core/Framework/Container/config';
 
     $containerFactory = new ContainerFactory($configDir, $environment);
     $container = $containerFactory->create();
@@ -30,3 +30,9 @@ it('should load container configurations based on the app environment', function
     [AppEnv::TEST, DummyTestObject::class],
     [AppEnv::PROD, DummyProdObject::class]
 ]);
+
+it('should throw exception when config dir does not exist', function () {
+
+    $containerFactory = new ContainerFactory($this->kernel->rootDir, AppEnv::TEST);
+    $container = $containerFactory->create();
+})->throws(UnexpectedValueException::class);

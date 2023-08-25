@@ -6,7 +6,12 @@ namespace SamihSoylu\Crunchyroll\Core\Framework\Core;
 
 use DI\Container;
 use LogicException;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use RecursiveRegexIterator;
+use RegexIterator;
 use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
+use UnexpectedValueException;
 
 final readonly class ContainerFactory
 {
@@ -32,8 +37,7 @@ final readonly class ContainerFactory
         ]);
 
         foreach ($environments as $environment) {
-            $files = glob("{$this->configDir}/services/{$environment}/*.php");
-            foreach ($files as $file) {
+            foreach ($this->getFiles($environment) as $file) {
                 $configurator = require $file;
                 if (!is_callable($configurator)) {
                     throw new LogicException("Expected '{$file}' to return a callable configurator.");
@@ -42,5 +46,28 @@ final readonly class ContainerFactory
                 $configurator($container);
             }
         }
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    private function getFiles(string $environment): array
+    {
+        $directoryPath = "{$this->configDir}/services/{$environment}/";
+        try {
+            $directory = new RecursiveDirectoryIterator($directoryPath);
+        } catch (UnexpectedValueException $exception) {
+            throw new UnexpectedValueException(
+                "Unable to open '{$directoryPath}'",
+                $exception->getCode(), $exception
+            );
+        }
+
+        $iterator = new RecursiveIteratorIterator($directory);
+        $files = new RegexIterator($iterator, '/^.+\.php$/i', RecursiveRegexIterator::GET_MATCH);
+
+        return array_values(array_map(function (array $file) {
+            return $file[0];
+        }, iterator_to_array($files)));
     }
 }

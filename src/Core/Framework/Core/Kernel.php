@@ -11,6 +11,7 @@ final readonly class Kernel
 {
     public ContainerInterface $container;
     public AppEnv $environment;
+    public string $rootDir;
 
     private function __construct() {}
 
@@ -20,6 +21,7 @@ final readonly class Kernel
         $kernel->assertEnvironmentVariablesAreSet();
 
         $kernel->environment = AppEnv::from($_ENV['APP_ENV']);
+        $kernel->rootDir = $_ENV['ROOT_DIR'];
 
         $kernel->initializeContainer();
 
@@ -38,7 +40,7 @@ final readonly class Kernel
 
     private function assertEnvironmentVariablesAreSet(): void
     {
-        $requiredFields = ['APP_ENV', 'APP_CONFIG_DIR'];
+        $requiredFields = ['APP_ENV', 'APP_CONFIG_DIR', 'ROOT_DIR'];
 
         foreach ($requiredFields as $field) {
             if (!array_key_exists($field, $_ENV)) {

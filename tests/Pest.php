@@ -12,7 +12,9 @@
 */
 
 // uses(Tests\TestCase::class)->in('Feature');
-uses()->group('Unit')->in('Unit');
+use SamihSoylu\Crunchyroll\Tests\Framework\BaseTestCase;
+
+uses(BaseTestCase::class)->group('Unit')->in('Unit');
 
 /*
 |--------------------------------------------------------------------------
