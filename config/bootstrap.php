@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Brd6\NotionSdkPhp\Client;
 use Psr\Container\ContainerInterface;
 use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
 use SamihSoylu\Crunchyroll\Core\Framework\Core\ContainerFactory;

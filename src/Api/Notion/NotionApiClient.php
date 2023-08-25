@@ -4,20 +4,17 @@ declare(strict_types=1);
 
 namespace SamihSoylu\Crunchyroll\Api\Notion;
 
-use Brd6\NotionSdkPhp\Client;
-use Brd6\NotionSdkPhp\Resource\Database;
-use Brd6\NotionSdkPhp\Resource\Page;
-use SamihSoylu\Crunchyroll\Api\Notion\Repository\DatabaseRepository;
-use SamihSoylu\Crunchyroll\Api\Notion\Repository\DatabaseRepositoryInterface;
+use SamihSoylu\Crunchyroll\Api\Notion\Repository\SeriesRepository;
+use SamihSoylu\Crunchyroll\Api\Notion\Repository\SeriesRepositoryInterface;
 
-final class NotionApiClient
+final readonly class NotionApiClient
 {
     public function __construct(
-        private readonly DatabaseRepositoryInterface $databaseRepository,
+        private readonly SeriesRepositoryInterface $seriesRepository,
     ) {}
 
-    public function getDatabaseRepository(): DatabaseRepositoryInterface
+    public function getSeriesRepository(): SeriesRepositoryInterface
     {
-        return $this->databaseRepository;
+        return $this->seriesRepository;
     }
 }

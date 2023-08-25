@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SamihSoylu\Crunchyroll\Cronjob;
 
+use Notion\Databases\Properties\Status;
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\CrunchyrollApiClient;
+use SamihSoylu\Crunchyroll\Api\Notion\Entity\CustomField\Watched;
 use SamihSoylu\Crunchyroll\Api\Notion\NotionApiClient;
 
 final class Sync
@@ -22,10 +24,14 @@ final class Sync
         // yes: check episode number (comparison)
         // yes: In Notion set status field to "new episode"
         // insert link to "new_episode_url" column/fiel
-        $episodes = $this->crunchyrollApiClient->getAnimeEpisodeRepository()->getLatestEpisodes();
+        //$episodes = $this->crunchyrollApiClient->getAnimeEpisodeRepository()->getLatestEpisodes();
 
-
-        $this->notionApiClient->getDatabaseRepository()->update(new \StdClass);
-        //$this->notionApiClient->getDatabaseRepository()->getById($notionDatabaseId);
+        $series = $this->notionApiClient->getSeriesRepository()->getAllSeriesByDatabaseId($notionDatabaseId);
+        foreach ($series as $serie) {
+            $serie->setStatus(Watched::newEpisodes());
+            $serie->setNewEpisodeUrl('https://google.com');
+            //$this->notionApiClient->getSeriesRepository()->updateSerie($serie->toApiPage());
+            echo "Updated {$serie->getName()}\n";
+        }
     }
 }
