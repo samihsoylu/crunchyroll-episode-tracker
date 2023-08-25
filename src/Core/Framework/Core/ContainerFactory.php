@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Samihsoylu\Crunchyroll\Core\Framework\Container;
+namespace Samihsoylu\Crunchyroll\Core\Framework\Core;
 
 use DI\Container;
 use LogicException;
