@@ -11,6 +11,7 @@ use Psr\Container\NotFoundExceptionInterface;
 use RuntimeException;
 use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
 use SamihSoylu\Crunchyroll\Core\Framework\Core\Kernel;
+use SamihSoylu\Crunchyroll\Tests\Framework\Core\MockHttpStream;
 
 abstract class BaseTestCase extends TestCase
 {
@@ -35,5 +36,17 @@ abstract class BaseTestCase extends TestCase
     public function getProjectRootDir(): string
     {
         return $this->kernel->rootDir;
+    }
+
+    public function mockHttpStream(string|bool $mockResponse): void
+    {
+        stream_wrapper_unregister('http');
+        stream_wrapper_register('http', MockHttpStream::class);
+        MockHttpStream::$mockResponse = $mockResponse;
+    }
+
+    public function restoreHttpStream(): void
+    {
+        stream_wrapper_restore('http');
     }
 }

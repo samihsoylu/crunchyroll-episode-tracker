@@ -17,6 +17,6 @@ $dotenv->load();
 $dotenv->required(['APP_ENV', 'NOTION_TOKEN', 'NOTION_DATABASE_ID']);
 
 $sentryDsn = $_ENV['SENTRY_DSN'] ?? false;
-if ($sentryDsn) {
+if ($sentryDsn && $_ENV['APP_ENV'] === 'prod') {
     init(['dsn' => $sentryDsn]);
 }

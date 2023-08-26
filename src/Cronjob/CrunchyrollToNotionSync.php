@@ -34,7 +34,12 @@ final class CrunchyrollToNotionSync
      */
     private function updateSerieIfNeeded(Serie $serie, array $episodes): void
     {
-        $crunchyrollEpisode = $episodes[$serie->getName()] ?? null;
+        $crunchyrollEpisode = null;
+        foreach ($episodes as $episode) {
+            if (str_contains($serie->getName(), $episode->getSeriesTitle())) {
+                $crunchyrollEpisode = $episode;
+            }
+        }
 
         if ($crunchyrollEpisode === null) {
             return;

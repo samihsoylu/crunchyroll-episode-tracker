@@ -37,7 +37,8 @@ final readonly class ContainerFactory
         ]);
 
         foreach ($environments as $environment) {
-            foreach ($this->getFiles($environment) as $file) {
+            $files = $this->getFiles($environment);
+            foreach ($files as $file) {
                 $configurator = require $file;
                 if (!is_callable($configurator)) {
                     throw new LogicException("Expected '{$file}' to return a callable configurator.");
