@@ -32,8 +32,8 @@ final readonly class SeriesRepository implements SeriesRepositoryInterface
         }, $this->notion->databases()->queryAllPages($database));
     }
 
-    public function updateSerie(Page $page): void
+    public function updateSerie(Serie $serie): void
     {
-        $this->notion->pages()->update($page);
+        $this->notion->pages()->update($serie->toApiPage());
     }
 }

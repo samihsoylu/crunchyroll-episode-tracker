@@ -15,5 +15,5 @@ interface SeriesRepositoryInterface
      */
     public function getAllSeriesByDatabaseId(string $databaseId): array;
 
-    public function updateSerie(Page $page): void;
+    public function updateSerie(Serie $serie): void;
 }

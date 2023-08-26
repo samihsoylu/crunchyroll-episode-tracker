@@ -1,8 +1,8 @@
 <?php
 
 use DI\Container;
-use SamihSoylu\Crunchyroll\Tests\TestDouble\Dummy\DummyObjectInterface;
-use SamihSoylu\Crunchyroll\Tests\TestDouble\Dummy\DummyTestObject;
+use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Dummy\DummyObjectInterface;
+use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Dummy\DummyTestObject;
 
 return function(Container $container) {
     $container->set(DummyObjectInterface::class, function() {
