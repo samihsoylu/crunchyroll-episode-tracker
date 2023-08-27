@@ -19,3 +19,14 @@ it('should initialize container', function () {
 
     expect($kernel->container)->toBeInstanceOf(ContainerInterface::class);
 });
+
+it('should throw when environment variable is nto set', function () {
+    $this->env = $_ENV['APP_ENV'];
+    unset($_ENV['APP_ENV']);
+
+    afterEach(function () {
+       $_ENV['APP_ENV'] = $this->env;
+    });
+
+    Kernel::boot();
+})->throws(RuntimeException::class);

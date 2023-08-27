@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SamihSoylu\Crunchyroll\Tests\Framework;
 
+use AllowDynamicProperties;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -13,7 +14,7 @@ use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
 use SamihSoylu\Crunchyroll\Core\Framework\Core\Kernel;
 use SamihSoylu\Crunchyroll\Tests\Framework\Core\MockHttpStream;
 
-abstract class BaseTestCase extends TestCase
+#[AllowDynamicProperties] abstract class BaseTestCase extends TestCase
 {
     private Kernel $kernel;
 

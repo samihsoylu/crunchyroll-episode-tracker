@@ -32,7 +32,13 @@ it('should load container configurations based on the app environment', function
 ]);
 
 it('should throw exception when config dir does not exist', function () {
-
     $containerFactory = new ContainerFactory($this->getProjectRootDir(), AppEnv::TEST);
     $container = $containerFactory->create();
 })->throws(UnexpectedValueException::class);
+
+it('should throw exception when configurator is not callable', function () {
+    $configDir = $this->getProjectRootDir() . '/tests/Framework/TestDouble/Fake/Core/Framework/Container/invalidConfig';
+
+    $containerFactory = new ContainerFactory($configDir, AppEnv::TEST);
+    $containerFactory->create();
+})->throws(LogicException::class);

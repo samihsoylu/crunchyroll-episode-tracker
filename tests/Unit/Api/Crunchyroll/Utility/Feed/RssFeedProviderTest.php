@@ -2,26 +2,33 @@
 
 declare(strict_types=1);
 
+use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\Psr7\Response;
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\Feed\RssFeedProvider;
 
-it('should return SimpleXMLElement on successful getFeed', function () {
-    $this->mockHttpStream('<rss><channel><title>Sample Feed</title></channel></rss>');
-
-    $rssFeedProvider = new RssFeedProvider('http://example.com/rss');
-    $result = $rssFeedProvider->getFeed();
-
-    expect($result)->toBeInstanceOf(SimpleXMLElement::class)
-        ->and((string)$result->channel->title)->toBe('Sample Feed');
+beforeEach(function () {
+    $this->httpClient = $this->createMock(GuzzleHttpClient::class);
+    $this->rssFeedUrl = 'https://some-rss-feed-url.com';
+    $this->rssFeedProvider = new RssFeedProvider($this->rssFeedUrl, $this->httpClient);
 });
 
-it('should throw RuntimeException when getFeed fails', function () {
-    $this->mockHttpStream(false);
+it('should return SimpleXMLElement when HTTP status code is 200', function () {
+    $xmlContent = '<?xml version="1.0" encoding="UTF-8"?><rss></rss>';
+    $this->httpClient->expects($this->once())
+        ->method('get')
+        ->with($this->rssFeedUrl)
+        ->willReturn(new Response(200, [], $xmlContent));
 
-    $rssFeedProvider = new RssFeedProvider('http://example.com/rss');
+    $result = $this->rssFeedProvider->getFeed();
 
-    $rssFeedProvider->getFeed();
+    expect($result)->toBeInstanceOf(SimpleXMLElement::class);
+});
+
+it('should throw RuntimeException when HTTP status code is not 200', function () {
+    $this->httpClient->expects($this->once())
+        ->method('get')
+        ->with($this->rssFeedUrl)
+        ->willReturn(new Response(404));
+
+    $this->rssFeedProvider->getFeed();
 })->throws(RuntimeException::class, 'Could not retrieve RSS feed');
-
-afterEach(function () {
-   $this->restoreHttpStream();
-});

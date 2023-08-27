@@ -9,8 +9,9 @@ use Notion\Databases\Properties\SelectOption;
 use Notion\Pages\Page;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
+use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
 
-final class FakeSerie extends Serie
+final class FakeSerie implements SerieInterface
 {
     public function __construct(
         private readonly string $name,
@@ -18,10 +19,7 @@ final class FakeSerie extends Serie
         private Episode $previousEpisode,
         private string $currentEpisodeUrl,
         private SelectOption $currentEpisodeStatus,
-    )
-    {
-        parent::__construct(null);
-    }
+    ) {}
 
     public function getName(): string
     {

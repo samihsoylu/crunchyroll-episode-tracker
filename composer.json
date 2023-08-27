@@ -23,7 +23,9 @@
         "php-di/php-di": "^7.0",
         "vlucas/phpdotenv": "^5.5",
         "sentry/sdk": "^3.5",
-        "mariosimao/notion-sdk-php": "^1.11"
+        "mariosimao/notion-sdk-php": "^1.11",
+        "monolog/monolog": "^3.4",
+        "guzzlehttp/guzzle": "^7.8"
     },
     "config": {
         "allow-plugins": {
@@ -33,6 +35,7 @@
     },
     "require-dev": {
         "pestphp/pest": "^2.16",
-        "symfony/var-dumper": "^6.3"
+        "symfony/var-dumper": "^6.3",
+        "mockery/mockery": "^1.6"
     }
 }

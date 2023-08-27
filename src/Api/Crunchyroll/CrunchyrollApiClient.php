@@ -13,7 +13,7 @@ final class CrunchyrollApiClient
         private readonly AnimeEpisodeRepositoryInterface $repository,
     ) {}
 
-    public function getAnimeEpisodeRepository(): AnimeEpisodeRepositoryInterface
+    public function animeEpisode(): AnimeEpisodeRepositoryInterface
     {
         return $this->repository;
     }

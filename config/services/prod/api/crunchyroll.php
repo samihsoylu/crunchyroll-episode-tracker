@@ -19,6 +19,7 @@ return function (Container $container) {
     $container->set(FeedProviderInterface::class, function (Container $container) {
         return new RssFeedProvider(
             $_ENV['CRUNCHYROLL_RSS_FEED_URL'],
+            $container->get(Client::class),
         );
     });
 

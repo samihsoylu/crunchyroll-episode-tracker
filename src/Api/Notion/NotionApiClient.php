@@ -13,7 +13,7 @@ final readonly class NotionApiClient
         private readonly SeriesRepositoryInterface $seriesRepository,
     ) {}
 
-    public function getSeriesRepository(): SeriesRepositoryInterface
+    public function series(): SeriesRepositoryInterface
     {
         return $this->seriesRepository;
     }

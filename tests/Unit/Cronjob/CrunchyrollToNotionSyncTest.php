@@ -8,6 +8,7 @@ use SamihSoylu\Crunchyroll\Api\Notion\NotionApiClient;
 use SamihSoylu\Crunchyroll\Cronjob\CrunchyrollToNotionSync;
 use SamihSoylu\Crunchyroll\Tests\Framework\Builder\AnimeEpisodeBuilder;
 use SamihSoylu\Crunchyroll\Tests\Framework\Builder\FakeSerieBuilder;
+use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Dummy\DummyLogger;
 use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Spy\SpyAnimeEpisodeRepository;
 use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Spy\SpySeriesRepository;
 
@@ -17,6 +18,7 @@ it('should update the series if a new Crunchyroll episode is found', function ()
     $sync = new CrunchyrollToNotionSync(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
+        new DummyLogger()
     );
     $sync('fake-notion-database-id');
 
@@ -29,6 +31,7 @@ it('should not update the series if no new Crunchyroll episode is found', functi
     $sync = new CrunchyrollToNotionSync(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
+        new DummyLogger()
     );
     $sync('fake-notion-database-id');
 
@@ -41,6 +44,7 @@ it('should not update the series if Crunchyroll has no information about the ser
     $sync = new CrunchyrollToNotionSync(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
+        new DummyLogger()
     );
     $sync('fake-notion-database-id');
 
@@ -53,6 +57,7 @@ it('should not update any series if there are no series in Notion', function () 
     $sync = new CrunchyrollToNotionSync(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
+        new DummyLogger()
     );
     $sync('fake-notion-database-id');
 

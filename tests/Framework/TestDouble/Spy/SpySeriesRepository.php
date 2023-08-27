@@ -5,27 +5,28 @@ declare(strict_types=1);
 namespace SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Spy;
 
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
+use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
 use SamihSoylu\Crunchyroll\Api\Notion\Repository\SeriesRepositoryInterface;
 
 final class SpySeriesRepository implements SeriesRepositoryInterface
 {
-    /** @var Serie[] */
+    /** @var SerieInterface[] */
     private array $allSeries = [];
 
     /** @var Serie[] */
     private array $updatedSeries = [];
 
-    public function getAllSeriesByDatabaseId(string $databaseId): array
+    public function getAll(string $databaseId): array
     {
         return $this->allSeries;
     }
 
-    public function setAllSeries(Serie ...$series): void
+    public function setAllSeries(SerieInterface ...$series): void
     {
         $this->allSeries = $series;
     }
 
-    public function updateSerie(Serie $serie): void
+    public function update(SerieInterface $serie): void
     {
         $this->updatedSeries[] = $serie;
     }

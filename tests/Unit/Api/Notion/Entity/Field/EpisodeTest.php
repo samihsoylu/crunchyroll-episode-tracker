@@ -18,7 +18,7 @@ it('should throw an exception for invalid string formats', function () {
     Episode::fromString('invalidString');
 })->throws(InvalidArgumentException::class);
 
-it('it should determine if an episode is older', function () {
+it('should determine if an episode is older', function () {
     $episode = new Episode(1, 1);
 
     expect($episode->isOldEpisode(1, 2))->toBeTrue()
@@ -33,4 +33,24 @@ it('it should handle double-digit seasons and episodes', function () {
 
     $newEpisode = Episode::fromString('S12E46');
     expect((string) $newEpisode)->toBe('S12E46');
+});
+
+it('should update and return the season number', function () {
+    $episode = new Episode(1, 1);
+    $episode->setSeasonNumber(2);
+
+    expect($episode->getSeasonNumber())->toBe(2);
+});
+
+it('should update and return the episode number', function () {
+    $episode = new Episode(1, 1);
+    $episode->setEpisodeNumber(2);
+
+    expect($episode->getEpisodeNumber())->toBe(2);
+});
+
+it('should handle edge cases in isOldEpisode method', function () {
+    $episode = new Episode(1, 1);
+
+    expect($episode->isOldEpisode(0, 0))->toBeFalse();
 });

@@ -9,21 +9,18 @@ use Notion\Pages\Page;
 use Notion\Pages\Properties\PropertyCollection;
 use Notion\Pages\Properties\Url;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
+use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
 
 final readonly class SeriesRepository implements SeriesRepositoryInterface
 {
-    private Notion $notion;
-
     public function __construct(
-        private string $token,
-    ) {
-        $this->notion = Notion::create($this->token);
-    }
+        private Notion $notion
+    ) {}
 
     /**
-     * @return Serie[]
+     * @return SerieInterface[]
      */
-    public function getAllSeriesByDatabaseId(string $databaseId): array
+    public function getAll(string $databaseId): array
     {
         $database = $this->notion->databases()->find($databaseId);
 
@@ -32,7 +29,7 @@ final readonly class SeriesRepository implements SeriesRepositoryInterface
         }, $this->notion->databases()->queryAllPages($database));
     }
 
-    public function updateSerie(Serie $serie): void
+    public function update(SerieInterface $serie): void
     {
         $this->notion->pages()->update($serie->toApiPage());
     }

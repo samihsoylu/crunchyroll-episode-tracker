@@ -13,7 +13,7 @@ use Notion\Pages\Properties\Select;
 use Notion\Pages\Properties\Url;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
 
-class Serie
+class Serie implements SerieInterface
 {
     private const FIELD_NAME = 'Name';
 

@@ -6,14 +6,15 @@ namespace SamihSoylu\Crunchyroll\Api\Notion\Repository;
 
 use Notion\Pages\Page;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
+use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
 
 interface SeriesRepositoryInterface
 {
     /**
      * @param string $databaseId
-     * @return Serie[]
+     * @return SerieInterface[]
      */
-    public function getAllSeriesByDatabaseId(string $databaseId): array;
+    public function getAll(string $databaseId): array;
 
-    public function updateSerie(Serie $serie): void;
+    public function update(SerieInterface $serie): void;
 }
