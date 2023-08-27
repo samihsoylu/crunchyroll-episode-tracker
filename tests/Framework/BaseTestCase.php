@@ -7,7 +7,6 @@ namespace SamihSoylu\Crunchyroll\Tests\Framework;
 use AllowDynamicProperties;
 use PHPUnit\Framework\TestCase;
 use SamihSoylu\Crunchyroll\Core\Framework\Core\Kernel;
-use SamihSoylu\Crunchyroll\Tests\Framework\Core\MockHttpStream;
 
 #[AllowDynamicProperties] abstract class BaseTestCase extends TestCase
 {
@@ -32,17 +31,5 @@ use SamihSoylu\Crunchyroll\Tests\Framework\Core\MockHttpStream;
     public function getProjectRootDir(): string
     {
         return $this->kernel->rootDir;
-    }
-
-    public function mockHttpStream(string|bool $mockResponse): void
-    {
-        stream_wrapper_unregister('http');
-        stream_wrapper_register('http', MockHttpStream::class);
-        MockHttpStream::$mockResponse = $mockResponse;
-    }
-
-    public function restoreHttpStream(): void
-    {
-        stream_wrapper_restore('http');
     }
 }
