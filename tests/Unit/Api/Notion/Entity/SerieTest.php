@@ -2,15 +2,9 @@
 <?php
 
 use Notion\Pages\Page;
-use Notion\Pages\Properties\PropertyCollection;
-use Notion\Pages\Properties\RichTextProperty;
-use Notion\Pages\Properties\Url;
-use Notion\Pages\Properties\Select;
-use Notion\Databases\Properties\SelectOption;
-use Notion\Common\RichText;
+use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
 
 function getMockPage(): Page
 {

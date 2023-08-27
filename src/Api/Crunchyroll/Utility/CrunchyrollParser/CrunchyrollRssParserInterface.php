@@ -9,5 +9,6 @@ use SimpleXMLElement;
 interface CrunchyrollRssParserInterface
 {
     public function getChannels(): SimpleXMLElement;
+
     public function getItems(SimpleXMLElement $channel): SimpleXMLElement;
 }

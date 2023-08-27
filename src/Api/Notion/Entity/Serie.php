@@ -7,7 +7,6 @@ namespace SamihSoylu\Crunchyroll\Api\Notion\Entity;
 use Notion\Common\RichText;
 use Notion\Databases\Properties\SelectOption;
 use Notion\Pages\Page;
-use Notion\Pages\Properties\PropertyCollection;
 use Notion\Pages\Properties\RichTextProperty;
 use Notion\Pages\Properties\Select;
 use Notion\Pages\Properties\Url;
@@ -25,7 +24,8 @@ class Serie implements SerieInterface
 
     protected function __construct(
         private ?Page $page,
-    ) {}
+    ) {
+    }
 
     public function getName(): string
     {

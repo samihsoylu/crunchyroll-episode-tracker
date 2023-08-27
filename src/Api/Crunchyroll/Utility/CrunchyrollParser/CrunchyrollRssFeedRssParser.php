@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\CrunchyrollParser;
 
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\Feed\FeedProviderInterface;

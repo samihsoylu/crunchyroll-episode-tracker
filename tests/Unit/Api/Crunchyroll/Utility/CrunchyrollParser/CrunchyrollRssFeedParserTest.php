@@ -6,7 +6,7 @@ use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\CrunchyrollParser\Crunchyroll
 use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Fake\FakeRssFeedProvider;
 
 it('should successfully parse RSS feed', function () {
-$fakeFeed = <<<XML
+    $fakeFeed = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
 <rss>
     <channel>

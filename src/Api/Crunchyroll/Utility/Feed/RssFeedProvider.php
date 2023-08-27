@@ -12,7 +12,8 @@ final readonly class RssFeedProvider implements FeedProviderInterface
     public function __construct(
         private string $rssFeedUrl,
         private GuzzleHttpClient $httpClient,
-    ) {}
+    ) {
+    }
 
     public function getFeed(): SimpleXMLElement
     {

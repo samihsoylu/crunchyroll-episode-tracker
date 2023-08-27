@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 use Mockery\MockInterface;
-use Notion\Notion;
 use Notion\Databases\Client as DatabaseClient;
-use Notion\Pages\Client as PagesClient;
 use Notion\Databases\Database;
+use Notion\Notion;
+use Notion\Pages\Client as PagesClient;
 use Notion\Pages\Page;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;

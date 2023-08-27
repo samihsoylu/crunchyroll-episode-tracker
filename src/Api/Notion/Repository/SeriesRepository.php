@@ -6,8 +6,6 @@ namespace SamihSoylu\Crunchyroll\Api\Notion\Repository;
 
 use Notion\Notion;
 use Notion\Pages\Page;
-use Notion\Pages\Properties\PropertyCollection;
-use Notion\Pages\Properties\Url;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
 
@@ -15,7 +13,8 @@ final readonly class SeriesRepository implements SeriesRepositoryInterface
 {
     public function __construct(
         private Notion $notion
-    ) {}
+    ) {
+    }
 
     /**
      * @return SerieInterface[]

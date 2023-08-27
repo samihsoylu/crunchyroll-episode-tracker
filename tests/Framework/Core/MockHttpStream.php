@@ -15,6 +15,7 @@ final class MockHttpStream
     {
         $this->eof = false;
         $this->readFailed = (self::$mockResponse === false);
+
         return !$this->readFailed;
     }
 
@@ -25,6 +26,7 @@ final class MockHttpStream
         }
 
         $this->eof = true;
+
         return self::$mockResponse;
     }
 
@@ -48,7 +50,7 @@ final class MockHttpStream
             'mtime' => time(),
             'ctime' => time(),
             'blksize' => 4096,
-            'blocks' => 0
+            'blocks' => 0,
         ];
     }
 }

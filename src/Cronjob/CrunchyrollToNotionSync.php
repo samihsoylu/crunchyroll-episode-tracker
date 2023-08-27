@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace SamihSoylu\Crunchyroll\Cronjob;
 
-use Notion\Databases\Properties\Status;
 use Psr\Log\LoggerInterface;
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\CrunchyrollApiClient;
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
 use SamihSoylu\Crunchyroll\Api\Notion\NotionApiClient;
 
@@ -20,7 +18,8 @@ final class CrunchyrollToNotionSync
         private readonly CrunchyrollApiClient $crunchyroll,
         private readonly NotionApiClient $notion,
         private readonly LoggerInterface $logger,
-    ) {}
+    ) {
+    }
 
     public function __invoke(string $notionDatabaseId): void
     {
@@ -57,6 +56,7 @@ final class CrunchyrollToNotionSync
             $this->logger->info(
                 "Matched Series[name={$serie->getName()}, season={$crunchyrollEpisode->getSeasonNumber()}, episode={$crunchyrollEpisode->getEpisodeNumber()}] but has no new episodes. "
             );
+
             return;
         }
 

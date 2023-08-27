@@ -9,7 +9,6 @@ use Stringable;
 
 final class DummyLogger implements LoggerInterface
 {
-
     public function emergency(Stringable|string $message, array $context = []): void
     {
     }

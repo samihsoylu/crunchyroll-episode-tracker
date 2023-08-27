@@ -6,7 +6,6 @@ namespace SamihSoylu\Crunchyroll\Api\Crunchyroll\Repository;
 
 use LogicException;
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\CrunchyrollParser\CrunchyrollRssFeedRssParser;
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\CrunchyrollParser\CrunchyrollRssParserInterface;
 use SimpleXMLElement;
 
@@ -14,7 +13,8 @@ final class AnimeEpisodeRepository implements AnimeEpisodeRepositoryInterface
 {
     public function __construct(
         private readonly CrunchyrollRssParserInterface $feedParser,
-    ) {}
+    ) {
+    }
 
     /**
      * @return AnimeEpisode[]

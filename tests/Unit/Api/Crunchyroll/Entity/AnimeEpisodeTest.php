@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
 
-
 it('should create AnimeEpisode from SimpleXMLElement', function () {
-    $xml = new SimpleXMLElement('
+    $xml = new SimpleXMLElement(
+        '
         <item xmlns:crunchyroll="http://www.crunchyroll.com/rss">
             <title>Episode 1</title>
             <link>http://example.com/episode-1</link>

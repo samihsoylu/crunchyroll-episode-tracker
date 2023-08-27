@@ -11,7 +11,8 @@ final class FakeRssFeedProvider implements FeedProviderInterface
 {
     public function __construct(
         private string $xmlFeed,
-    ) {}
+    ) {
+    }
 
     public function getFeed(): SimpleXMLElement
     {

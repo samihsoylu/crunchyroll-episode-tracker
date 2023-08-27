@@ -6,5 +6,4 @@ namespace SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Dummy;
 
 interface DummyObjectInterface
 {
-
 }

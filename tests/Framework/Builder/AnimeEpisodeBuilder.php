@@ -107,6 +107,7 @@ final class AnimeEpisodeBuilder
         $this->publisher = 'Samih';
         $this->publishedDate = '2022-03-02 10:03:04';
     }
+
     public function build(): AnimeEpisode
     {
         return AnimeEpisode::fromArray([

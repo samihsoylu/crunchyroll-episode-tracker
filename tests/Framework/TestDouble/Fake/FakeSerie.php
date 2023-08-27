@@ -8,7 +8,6 @@ use BadMethodCallException;
 use Notion\Databases\Properties\SelectOption;
 use Notion\Pages\Page;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
 
 final class FakeSerie implements SerieInterface
@@ -19,7 +18,8 @@ final class FakeSerie implements SerieInterface
         private Episode $previousEpisode,
         private string $currentEpisodeUrl,
         private SelectOption $currentEpisodeStatus,
-    ) {}
+    ) {
+    }
 
     public function getName(): string
     {

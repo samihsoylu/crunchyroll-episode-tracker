@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace SamihSoylu\Crunchyroll\Tests\Framework\Builder;
 
 use Notion\Databases\Properties\SelectOption;
-use Notion\Pages\Page;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
 use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Fake\FakeSerie;
 
 final class FakeSerieBuilder

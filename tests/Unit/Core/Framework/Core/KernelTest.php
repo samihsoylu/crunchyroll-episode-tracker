@@ -25,7 +25,7 @@ it('should throw when environment variable is nto set', function () {
     unset($_ENV['APP_ENV']);
 
     afterEach(function () {
-       $_ENV['APP_ENV'] = $this->env;
+        $_ENV['APP_ENV'] = $this->env;
     });
 
     Kernel::boot();

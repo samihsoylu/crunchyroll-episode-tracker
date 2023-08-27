@@ -13,7 +13,9 @@ final readonly class Kernel
     public AppEnv $environment;
     public string $rootDir;
 
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     public static function boot(): self
     {

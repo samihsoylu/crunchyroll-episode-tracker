@@ -7,7 +7,8 @@ namespace SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity;
 use DateTimeImmutable;
 use SimpleXMLElement;
 
-final class AnimeEpisode {
+final class AnimeEpisode
+{
     private string $title;
     private string $link;
     private string $description;
@@ -19,7 +20,9 @@ final class AnimeEpisode {
     private string $publisher;
     private string $publishedDate;
 
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     public static function fromSimpleXmlElement(SimpleXMLElement $item): self
     {

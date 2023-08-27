@@ -18,7 +18,8 @@ final readonly class ContainerFactory
     public function __construct(
         private string $configDir,
         private AppEnv $environment,
-    ) {}
+    ) {
+    }
 
     public function create(): Container
     {
@@ -33,7 +34,7 @@ final readonly class ContainerFactory
     {
         $environments = array_unique([
             AppEnv::PROD->value,
-            $this->environment->value
+            $this->environment->value,
         ]);
 
         foreach ($environments as $environment) {
@@ -55,12 +56,14 @@ final readonly class ContainerFactory
     private function getFiles(string $environment): array
     {
         $directoryPath = "{$this->configDir}/services/{$environment}/";
+
         try {
             $directory = new RecursiveDirectoryIterator($directoryPath);
         } catch (UnexpectedValueException $exception) {
             throw new UnexpectedValueException(
                 "Unable to open '{$directoryPath}'",
-                $exception->getCode(), $exception
+                $exception->getCode(),
+                $exception
             );
         }
 

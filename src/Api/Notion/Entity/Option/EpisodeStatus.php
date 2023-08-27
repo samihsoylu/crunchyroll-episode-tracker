@@ -8,7 +8,9 @@ use Notion\Databases\Properties\SelectOption;
 
 final readonly class EpisodeStatus
 {
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     public static function newEpisode(): SelectOption
     {
