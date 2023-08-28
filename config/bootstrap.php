@@ -16,7 +16,8 @@ require_once($_ENV['ROOT_DIR'] . '/vendor/autoload.php');
 
 $dotenv = Dotenv\Dotenv::createImmutable($_ENV['ROOT_DIR']);
 $dotenv->load();
-$dotenv->required(['APP_ENV', 'NOTION_TOKEN', 'NOTION_DATABASE_ID']);
+
+$dotenv->required(['APP_ENV', 'NOTION_TOKEN', 'NOTION_DATABASE_ID', 'CRUNCHYROLL_RSS_FEED_URL']);
 
 $sentryDsn = $_ENV['SENTRY_DSN'] ?? false;
 if ($sentryDsn && $_ENV['APP_ENV'] === 'prod') {
