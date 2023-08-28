@@ -1,0 +1,42 @@
+#!/usr/bin/env php
+<?php
+
+use SamihSoylu\Crunchyroll\Core\Framework\Core\Kernel;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Finder\Finder;
+
+require_once dirname(__DIR__) . '/config/bootstrap.php';
+
+if (php_sapi_name() !== 'cli') {
+    exit('This script must be run from the command line.');
+}
+
+$kernel = Kernel::boot();
+
+/** @var Application $console */
+$console = $kernel->container->get(Application::class);
+
+$find = new Finder();
+$commands = $find->files()->in($_ENV['ROOT_DIR'] . '/src/Console');
+
+$commandNamespace = '\\SamihSoylu\\Crunchyroll\\Console\\';
+foreach ($commands as $command) {
+    $className = str_replace('.php', '', $command->getRelativePathname());
+    $className = str_replace('/', '\\', $className);
+
+    /** @var Object $fqcn */
+    $fqcn = $commandNamespace . $className;
+
+    if (!class_exists($fqcn)) {
+        throw new RuntimeException("Class '$fqcn' does not exist");
+    }
+
+    if (!is_subclass_of($fqcn, Command::class)) {
+        throw new LogicException("Class '{$fqcn}' is not a command");
+    }
+
+    $console->add($kernel->container->get($fqcn));
+}
+
+$console->run();

@@ -6,15 +6,6 @@ use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
 
-function getMockPage(): Page
-{
-    $json = file_get_contents(__DIR__ . '/MockPage.json');
-    $array = json_decode($json, true);
-
-
-    return Page::fromArray($array);
-}
-
 it('should get the name of the serie', function () {
     $serie = Serie::fromApiPage(getMockPage());
 

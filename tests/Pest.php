@@ -13,7 +13,7 @@ declare(strict_types=1);
 |
 */
 
-// uses(Tests\TestCase::class)->in('Feature');
+use Notion\Pages\Page;
 use SamihSoylu\Crunchyroll\Tests\Framework\BaseTestCase;
 
 uses(BaseTestCase::class)->group('Unit')->in('Unit');
@@ -44,7 +44,11 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function getMockPage(): Page
 {
-    // ..
+    $json = file_get_contents(__DIR__ . '/Framework/TestDouble/Json/MockPage.json');
+    $array = json_decode($json, true);
+
+
+    return Page::fromArray($array);
 }

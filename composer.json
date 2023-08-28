@@ -26,7 +26,8 @@
         "mariosimao/notion-sdk-php": "^1.11",
         "monolog/monolog": "^3.4",
         "guzzlehttp/guzzle": "^7.8",
-        "symfony/finder": "^6.3"
+        "symfony/finder": "^6.3",
+        "symfony/console": "^6.3"
     },
     "config": {
         "allow-plugins": {

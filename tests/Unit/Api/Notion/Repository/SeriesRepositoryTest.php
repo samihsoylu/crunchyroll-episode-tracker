@@ -29,19 +29,11 @@ it('should update a series', function () {
     $notion = getMockedNotion($mockPages);
 
     $repo = new SeriesRepository($notion);
-    $serie = Serie::fromApiPage(getMockPageForSeriesRepositoryTest());
+    $serie = Serie::fromApiPage(getMockpage());
 
     $repo->update($serie);
 });
 
-
-function getMockPageForSeriesRepositoryTest(): Page
-{
-    $json = file_get_contents(__DIR__ . '/MockPage.json');
-    $array = json_decode($json, true);
-
-    return Page::fromArray($array);
-}
 
 function getMockedNotion(?PagesClient $mockedPages = null): MockInterface|Notion
 {
@@ -49,7 +41,7 @@ function getMockedNotion(?PagesClient $mockedPages = null): MockInterface|Notion
     $mockedDatabaseClient = Mockery::mock(DatabaseClient::class);
     $mockedPagesClient = $mockedPages ?? Mockery::mock(PagesClient::class);
 
-    $mockedPage = getMockPageForSeriesRepositoryTest();  // Assuming getMockPageForSeriesRepositoryTest() returns a mock Page object
+    $mockedPage = getMockpage();
     $mockedDatabase = Mockery::mock(Database::class);
 
     $mockedNotion->shouldReceive('databases')
