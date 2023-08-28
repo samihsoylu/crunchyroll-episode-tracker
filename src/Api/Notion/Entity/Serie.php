@@ -23,7 +23,7 @@ class Serie implements SerieInterface
     private const FIELD_CURRENT_EPISODE_URL = 'Current episode url';
 
     protected function __construct(
-        private ?Page $page,
+        private Page $page,
     ) {
     }
 

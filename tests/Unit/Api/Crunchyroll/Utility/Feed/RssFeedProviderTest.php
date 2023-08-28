@@ -32,3 +32,12 @@ it('should throw RuntimeException when HTTP status code is not 200', function ()
 
     $this->rssFeedProvider->getFeed();
 })->throws(RuntimeException::class, 'Could not retrieve RSS feed');
+
+it('should throw RuntimeException when retrieved xml is corrupt', function () {
+    $this->httpClient->expects($this->once())
+        ->method('get')
+        ->with($this->rssFeedUrl)
+        ->willReturn(new Response(200, [], null));
+
+    $this->rssFeedProvider->getFeed();
+})->throws(RuntimeException::class, 'Could not parse feed data, feed data is corrupt');

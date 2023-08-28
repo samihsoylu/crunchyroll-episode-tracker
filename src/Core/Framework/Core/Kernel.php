@@ -7,6 +7,9 @@ namespace SamihSoylu\Crunchyroll\Core\Framework\Core;
 use Psr\Container\ContainerInterface;
 use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
 
+/**
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 final readonly class Kernel
 {
     public ContainerInterface $container;
@@ -15,29 +18,24 @@ final readonly class Kernel
 
     private function __construct()
     {
+        $this->assertEnvironmentVariablesAreSet();
+
+        $this->environment = AppEnv::from($_ENV['APP_ENV']);
+        $this->rootDir = $_ENV['ROOT_DIR'];
+        $this->container = $this->getContainerFactory()->create();
     }
 
     public static function boot(): self
     {
-        $kernel = new self();
-        $kernel->assertEnvironmentVariablesAreSet();
-
-        $kernel->environment = AppEnv::from($_ENV['APP_ENV']);
-        $kernel->rootDir = $_ENV['ROOT_DIR'];
-
-        $kernel->initializeContainer();
-
-        return $kernel;
+        return new self();
     }
 
-    private function initializeContainer(): void
+    private function getContainerFactory(): ContainerFactory
     {
-        $factory = new ContainerFactory(
+        return new ContainerFactory(
             $_ENV['APP_CONFIG_DIR'],
             $this->environment,
         );
-
-        $this->container = $factory->create();
     }
 
     private function assertEnvironmentVariablesAreSet(): void

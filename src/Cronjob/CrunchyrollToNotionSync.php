@@ -29,6 +29,11 @@ final class CrunchyrollToNotionSync
         $this->syncSeries($seriesOnNotion, $latestEpisodesOnCrunchyroll);
     }
 
+    /**
+     * @param SerieInterface[] $seriesOnNotion
+     * @param AnimeEpisode[] $latestEpisodesOnCrunchyroll
+     * @return void
+     */
     private function syncSeries(array $seriesOnNotion, array $latestEpisodesOnCrunchyroll): void
     {
         foreach ($seriesOnNotion as $serie) {
@@ -64,6 +69,9 @@ final class CrunchyrollToNotionSync
         $this->updateSerieBasedOnEpisode($serie, $matchedEpisode);
     }
 
+    /**
+     * @param AnimeEpisode[] $crunchyrollEpisodes
+     */
     private function findMatchedEpisode(SerieInterface $serie, array $crunchyrollEpisodes): ?AnimeEpisode
     {
         foreach ($crunchyrollEpisodes as $episode) {

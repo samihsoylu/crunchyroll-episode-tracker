@@ -39,6 +39,7 @@
         "pestphp/pest": "^2.16",
         "symfony/var-dumper": "^6.3",
         "mockery/mockery": "^1.6",
-        "friendsofphp/php-cs-fixer": "^3.23"
+        "friendsofphp/php-cs-fixer": "^3.23",
+        "phpstan/phpstan": "^1.10"
     }
 }

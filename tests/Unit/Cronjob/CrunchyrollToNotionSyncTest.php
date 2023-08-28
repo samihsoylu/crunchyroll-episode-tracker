@@ -58,8 +58,11 @@ it('should not update the series if crunchyroll has no information about the ser
 });
 
 it('should not update any series if there are no series in notion', function () {
-    [$notionSpy, $crunchyrollSpy] = createSpies(crunchyrollLatestSeason: 1,
-        crunchyrollLatestEpisodeNumber: 2, isEmptyNotion: true);
+    [$notionSpy, $crunchyrollSpy] = createSpies(
+        crunchyrollLatestSeason: 1,
+        crunchyrollLatestEpisodeNumber: 2,
+        isEmptyNotion: true
+    );
 
     $sync = new CrunchyrollToNotionSync(
         new CrunchyrollApiClient($crunchyrollSpy),

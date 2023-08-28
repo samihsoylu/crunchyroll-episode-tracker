@@ -23,6 +23,11 @@ final readonly class RssFeedProvider implements FeedProviderInterface
             throw new \RuntimeException('Could not retrieve RSS feed');
         }
 
-        return simplexml_load_string($response->getBody()->getContents());
+        $xml = simplexml_load_string($response->getBody()->getContents());
+        if ($xml === false) {
+            throw new \RuntimeException('Could not parse feed data, feed data is corrupt');
+        }
+
+        return $xml;
     }
 }
