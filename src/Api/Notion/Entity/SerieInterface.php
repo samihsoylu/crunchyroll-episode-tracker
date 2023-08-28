@@ -20,6 +20,8 @@ interface SerieInterface
 
     public function setCurrentEpisodeUrl(string $url): self;
 
+    public function getCurrentEpisodeStatus(): string;
+
     public function setCurrentEpisodeStatus(SelectOption $status): self;
 
     public static function fromApiPage(Page $page): self;

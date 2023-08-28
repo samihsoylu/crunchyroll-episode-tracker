@@ -1,3 +1,6 @@
 /.env
 /vendor
-.php-cs-fixer.cache
+/.php-cs-fixer.cache
+
+/var/*
+!/var/**/*.gitkeep

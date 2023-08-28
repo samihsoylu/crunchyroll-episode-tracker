@@ -8,13 +8,16 @@ use Notion\Databases\Properties\SelectOption;
 
 final readonly class EpisodeStatus
 {
+    public const NEW_EPISODE = 'New Episode';
+    public const WATCHED = 'Watched';
+
     public static function newEpisode(): SelectOption
     {
-        return SelectOption::fromName('New Episode');
+        return SelectOption::fromName(self::NEW_EPISODE);
     }
 
     public static function watched(): SelectOption
     {
-        return SelectOption::fromName('Watched');
+        return SelectOption::fromName(self::WATCHED);
     }
 }

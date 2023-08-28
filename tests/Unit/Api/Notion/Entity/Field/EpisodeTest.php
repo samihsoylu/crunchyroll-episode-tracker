@@ -54,3 +54,12 @@ it('should handle edge cases in isOldEpisode method', function () {
 
     expect($episode->isOldEpisode(0, 0))->toBeFalse();
 });
+
+it('should determine if is behind multiple episodes', function () {
+    $episode = new Episode(2, 1);
+
+    expect($episode->isBehindMultipleEpisodes(2, 2))->toBeFalse()
+        ->and($episode->isBehindMultipleEpisodes(2, 3))->toBeTrue()
+        ->and($episode->isBehindMultipleEpisodes(3, 1))->toBeTrue()
+        ->and($episode->isBehindMultipleEpisodes(1, 1))->toBeFalse();
+});

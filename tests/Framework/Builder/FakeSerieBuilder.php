@@ -59,8 +59,12 @@ final class FakeSerieBuilder
         return $this;
     }
 
-    public function withCurrentEpisodeStatus(SelectOption $currentEpisodeStatus): self
+    public function withCurrentEpisodeStatus(?SelectOption $currentEpisodeStatus): self
     {
+        if (!$currentEpisodeStatus) {
+            return $this;
+        }
+
         $this->currentEpisodeStatus = $currentEpisodeStatus;
 
         return $this;

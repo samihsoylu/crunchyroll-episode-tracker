@@ -1,7 +1,6 @@
 
 <?php
 
-use Notion\Pages\Page;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
@@ -68,5 +67,11 @@ it('should set the current episode status of the serie', function () {
         ->get('Current episode status')
         ->toArray()['select']['name'];
 
-    expect($actualCurrentEpisodeStatus)->toBe('New Episode');
+    expect($actualCurrentEpisodeStatus)->toBe(EpisodeStatus::NEW_EPISODE);
+});
+
+it('should get the current episode status of the serie', function () {
+    $serie = Serie::fromApiPage(getMockPage());
+
+    expect($serie->getCurrentEpisodeStatus())->toBe(EpisodeStatus::WATCHED);
 });

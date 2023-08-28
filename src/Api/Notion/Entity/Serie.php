@@ -80,6 +80,12 @@ class Serie implements SerieInterface
         return $this;
     }
 
+    public function getCurrentEpisodeStatus(): string
+    {
+        return $this->page->properties()->get(self::FIELD_CURRENT_EPISODE_STATUS)
+            ->toArray()['select']['name'];
+    }
+
     public function setCurrentEpisodeStatus(SelectOption $status): self
     {
         /** @var Select $currentEpisodeStatusProperty */

@@ -68,4 +68,9 @@ final class FakeSerie implements SerieInterface
     {
         throw new BadMethodCallException('Method toApiPage not implemented');
     }
+
+    public function getCurrentEpisodeStatus(): string
+    {
+        return $this->currentEpisodeStatus->toArray()['name'];
+    }
 }

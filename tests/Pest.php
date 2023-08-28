@@ -49,6 +49,5 @@ function getMockPage(): Page
     $json = file_get_contents(__DIR__ . '/Framework/TestDouble/Json/MockPage.json');
     $array = json_decode($json, true);
 
-
     return Page::fromArray($array);
 }

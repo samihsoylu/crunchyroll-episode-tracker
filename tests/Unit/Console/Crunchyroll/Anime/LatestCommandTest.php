@@ -30,6 +30,7 @@ function buildSpyRepositoryWithLatestEpisodes(): SpyAnimeEpisodeRepository
         buildAnimeEpisode('Naruto', 2, 21, '28-08-2023 03:00'),
         buildAnimeEpisode('One Piece', 22, 1000, '28-08-2023 03:05')
     );
+
     return $repositorySpy;
 }
 
@@ -48,6 +49,7 @@ function initializeCommandTester(SpyAnimeEpisodeRepository $repositorySpy): Comm
     $application = new Application();
     $command = new LatestCommand(new CrunchyrollApiClient($repositorySpy));
     $application->add($command);
+
     return new CommandTester($application->find('cr:anime:latest'));
 }
 

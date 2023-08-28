@@ -52,6 +52,19 @@ final class Episode implements \Stringable
         return false;
     }
 
+    public function isBehindMultipleEpisodes(int $seasonNumber, int $episodeNumber): bool
+    {
+        if ($this->seasonNumber < $seasonNumber) {
+            return true;
+        }
+
+        if ($this->seasonNumber === $seasonNumber && ($this->episodeNumber + 1) < $episodeNumber) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function __toString(): string
     {
         return sprintf("S%02dE%02d", $this->seasonNumber, $this->episodeNumber);
