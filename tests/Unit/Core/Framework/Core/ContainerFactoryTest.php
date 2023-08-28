@@ -8,6 +8,7 @@ use SamihSoylu\Crunchyroll\Core\Framework\Core\ContainerFactory;
 use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Dummy\DummyObjectInterface;
 use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Dummy\DummyProdObject;
 use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Dummy\DummyTestObject;
+use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 
 it('should create a container', function () {
     $configDir = $this->getProjectRootDir() . '/tests/Framework/TestDouble/Fake/Core/Framework/Container/config';
@@ -34,7 +35,7 @@ it('should load container configurations based on the app environment', function
 it('should throw exception when config dir does not exist', function () {
     $containerFactory = new ContainerFactory($this->getProjectRootDir(), AppEnv::TEST);
     $container = $containerFactory->create();
-})->throws(UnexpectedValueException::class);
+})->throws(DirectoryNotFoundException::class);
 
 it('should throw exception when configurator is not callable', function () {
     $configDir = $this->getProjectRootDir() . '/tests/Framework/TestDouble/Fake/Core/Framework/Container/invalidConfig';

@@ -6,12 +6,8 @@ namespace SamihSoylu\Crunchyroll\Core\Framework\Core;
 
 use DI\Container;
 use LogicException;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use RecursiveRegexIterator;
-use RegexIterator;
 use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
-use UnexpectedValueException;
+use Symfony\Component\Finder\Finder;
 
 final readonly class ContainerFactory
 {
@@ -37,9 +33,11 @@ final readonly class ContainerFactory
             $this->environment->value,
         ]);
 
+        $find = new Finder();
         foreach ($environments as $environment) {
-            $files = $this->getFiles($environment);
-            foreach ($files as $file) {
+            $directoryPath = "{$this->configDir}/services/{$environment}/";
+
+            foreach ($find->files()->in($directoryPath) as $file) {
                 $configurator = require $file;
                 if (!is_callable($configurator)) {
                     throw new LogicException("Expected '{$file}' to return a callable configurator.");
@@ -48,30 +46,5 @@ final readonly class ContainerFactory
                 $configurator($container);
             }
         }
-    }
-
-    /**
-     * @return array<int, string>
-     */
-    private function getFiles(string $environment): array
-    {
-        $directoryPath = "{$this->configDir}/services/{$environment}/";
-
-        try {
-            $directory = new RecursiveDirectoryIterator($directoryPath);
-        } catch (UnexpectedValueException $exception) {
-            throw new UnexpectedValueException(
-                "Unable to open '{$directoryPath}'",
-                $exception->getCode(),
-                $exception
-            );
-        }
-
-        $iterator = new RecursiveIteratorIterator($directory);
-        $files = new RegexIterator($iterator, '/^.+\.php$/i', RecursiveRegexIterator::GET_MATCH);
-
-        return array_values(array_map(function (array $file) {
-            return $file[0];
-        }, iterator_to_array($files)));
     }
 }
