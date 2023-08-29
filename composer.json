@@ -16,8 +16,8 @@
     ],
     "minimum-stability": "stable",
     "require": {
-      "php": "^8.2",
-      "ext-simplexml": "*",
+        "php": "^8.2",
+        "ext-simplexml": "*",
         "symfony/http-client": "^6.3",
         "nyholm/psr7": "^1.8",
         "php-di/php-di": "^7.0",
