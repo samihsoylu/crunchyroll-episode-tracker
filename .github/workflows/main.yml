@@ -20,7 +20,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: mbstring, xml, ctype, iconv, intl
+          extensions: mbstring, xml, ctype, iconv, intl, xdebug
+          coverage: xdebug
 
       - name: Validate Composer Files
         run: composer validate
@@ -38,4 +39,11 @@ jobs:
         run: cp .env.example .env
 
       - name: Run Pest
-        run: ./vendor/bin/pest
+        run: ./vendor/bin/pest --coverage-clover=coverage.xml --coverage --min=100
+
+      - name: Upload coverage report to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          flags: unittests

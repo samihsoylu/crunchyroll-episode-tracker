@@ -1,6 +1,7 @@
 /.env
 /vendor
 /.php-cs-fixer.cache
+/coverage.xml
 
 /var/*
 !/var/**/*.gitkeep
