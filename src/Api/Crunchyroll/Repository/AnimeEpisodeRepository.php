@@ -37,7 +37,7 @@ final class AnimeEpisodeRepository implements AnimeEpisodeRepositoryInterface
                     continue;
                 }
 
-                $episodes[$episode->getSeriesTitle()] = $episode;
+                $episodes[strtolower($episode->getSeriesTitle())] = $episode;
             }
         }
 

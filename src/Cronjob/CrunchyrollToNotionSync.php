@@ -57,6 +57,7 @@ final readonly class CrunchyrollToNotionSync implements CronjobInterface
             $crunchyrollEpisode = $latestEpisodesOnCrunchyroll[$serieName] ?? null;
             if ($crunchyrollEpisode === null) {
                 $this->logger->info("Skipped Series[name={$serie->getName()}], found no new Episodes");
+
                 continue;
             }
 

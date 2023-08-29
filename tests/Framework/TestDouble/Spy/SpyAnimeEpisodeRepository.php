@@ -17,7 +17,7 @@ final class SpyAnimeEpisodeRepository implements AnimeEpisodeRepositoryInterface
         $mappedEpisodes = [];
 
         foreach ($this->latestEpisodes as $episode) {
-            $mappedEpisodes[$episode->getSeriesTitle()] = $episode;
+            $mappedEpisodes[strtolower($episode->getSeriesTitle())] = $episode;
         }
 
         return $mappedEpisodes;

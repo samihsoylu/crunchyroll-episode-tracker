@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Spy;
 
-use PHPUnit\Framework\TestCase;
 use SamihSoylu\Crunchyroll\Cronjob\CronjobInterface;
 
 final class SpyCronjob implements CronjobInterface
