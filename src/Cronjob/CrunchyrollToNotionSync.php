@@ -12,21 +12,32 @@ use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
 use SamihSoylu\Crunchyroll\Api\Notion\NotionApiClient;
 
-final class CrunchyrollToNotionSync
+final readonly class CrunchyrollToNotionSync implements CronjobInterface
 {
     public function __construct(
-        private readonly CrunchyrollApiClient $crunchyroll,
-        private readonly NotionApiClient $notion,
-        private readonly LoggerInterface $logger,
+        private CrunchyrollApiClient $crunchyroll,
+        private NotionApiClient $notion,
+        private LoggerInterface $logger,
     ) {
     }
 
-    public function __invoke(string $notionDatabaseId): void
+    public function __invoke(mixed ...$args): void
     {
         $latestEpisodesOnCrunchyroll = $this->crunchyroll->animeEpisode()->getLatestEpisodes();
-        $seriesOnNotion = $this->notion->series()->getAll($notionDatabaseId);
+        $seriesOnNotion = $this->notion->series()->getAll($this->getNotionDatabaseId(...$args));
 
         $this->syncSeries($seriesOnNotion, $latestEpisodesOnCrunchyroll);
+    }
+
+    private function getNotionDatabaseId(mixed ...$args): string
+    {
+        $notionDatabaseId = $args[0] ?? null;
+        if ($notionDatabaseId === null) {
+            throw new \LogicException('Notion database id must be provided');
+        }
+
+        /** @phpstan-ignore-next-line  */
+        return (string) $notionDatabaseId;
     }
 
     /**
@@ -41,7 +52,15 @@ final class CrunchyrollToNotionSync
                 continue;
             }
 
-            $this->updateSerieIfNeeded($serie, $latestEpisodesOnCrunchyroll);
+            $serieName = strtolower($serie->getName());
+
+            $crunchyrollEpisode = $latestEpisodesOnCrunchyroll[$serieName] ?? null;
+            if ($crunchyrollEpisode === null) {
+                $this->logger->info("Skipped Series[name={$serie->getName()}], found no new Episodes");
+                continue;
+            }
+
+            $this->updateSerieIfNeeded($serie, $crunchyrollEpisode);
         }
     }
 
@@ -56,34 +75,7 @@ final class CrunchyrollToNotionSync
         return false;
     }
 
-    /**
-     * @param AnimeEpisode[] $crunchyrollEpisodes
-     */
-    private function updateSerieIfNeeded(SerieInterface $serie, array $crunchyrollEpisodes): void
-    {
-        $matchedEpisode = $this->findMatchedEpisode($serie, $crunchyrollEpisodes);
-        if ($matchedEpisode === null) {
-            return;
-        }
-
-        $this->updateSerieBasedOnEpisode($serie, $matchedEpisode);
-    }
-
-    /**
-     * @param AnimeEpisode[] $crunchyrollEpisodes
-     */
-    private function findMatchedEpisode(SerieInterface $serie, array $crunchyrollEpisodes): ?AnimeEpisode
-    {
-        foreach ($crunchyrollEpisodes as $episode) {
-            if (str_contains($serie->getName(), $episode->getSeriesTitle())) {
-                return $episode;
-            }
-        }
-
-        return null;
-    }
-
-    private function updateSerieBasedOnEpisode(SerieInterface $serie, AnimeEpisode $crunchyrollEpisode): void
+    private function updateSerieIfNeeded(SerieInterface $serie, AnimeEpisode $crunchyrollEpisode): void
     {
         $isOldEpisode = $serie->getCurrentEpisode()->isOldEpisode(
             $crunchyrollEpisode->getSeasonNumber(),
@@ -109,7 +101,7 @@ final class CrunchyrollToNotionSync
             );
 
             $serie->setCurrentEpisodeStatus(EpisodeStatus::newEpisode());
-            $serie->setCurrentEpisodeUrl('Unknown');
+            $serie->setCurrentEpisodeUrl("You're behind multiple episodes");
 
             $this->notion->series()->update($serie);
 

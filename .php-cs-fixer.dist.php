@@ -9,7 +9,11 @@ $rules = [
     'concat_space' => ['spacing' => 'one'],
     'phpdoc_align' => ['align' => 'left'],
     'class_attributes_separation' => [
-        'elements' => ['method' => 'one', 'property' => 'only_if_meta', 'trait_import' => 'one']
+        'elements' => [
+            'method' => 'one',
+            'property' => 'only_if_meta',
+            'trait_import' => 'one'
+        ]
     ],
     'blank_line_before_statement' => true,
     'date_time_immutable' => true,
