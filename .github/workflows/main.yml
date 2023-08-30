@@ -35,8 +35,8 @@ jobs:
       - name: Run PHPStan
         run: ./vendor/bin/phpstan
 
-      - name: Copy .env.example to .env
-        run: cp .env.example .env
+      - name: Copy .env.test to .env
+        run: cp .env.test .env
 
       - name: Run Pest
         run: ./vendor/bin/pest --coverage-clover=coverage.xml --coverage --min=100
