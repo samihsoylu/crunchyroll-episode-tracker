@@ -11,6 +11,7 @@ use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
 use SamihSoylu\Crunchyroll\Api\Notion\NotionApiClient;
+use SamihSoylu\Crunchyroll\Cronjob\Dto\CurrentEpisode;
 
 final readonly class CrunchyrollToNotionSync implements CronjobInterface
 {
@@ -23,105 +24,117 @@ final readonly class CrunchyrollToNotionSync implements CronjobInterface
 
     public function __invoke(mixed ...$args): void
     {
-        $latestEpisodesOnCrunchyroll = $this->crunchyroll->animeEpisode()->getLatestEpisodes();
-        $seriesOnNotion = $this->notion->series()->getAll($this->getNotionDatabaseId(...$args));
+        $episodes = $this->crunchyroll->animeEpisode()->getLatestEpisodes();
+        $series = $this->notion->series()->getAll($this->getNotionDatabaseId(...$args));
 
-        $this->syncSeries($seriesOnNotion, $latestEpisodesOnCrunchyroll);
+        $this->syncEpisodes($series, $episodes);
     }
 
     private function getNotionDatabaseId(mixed ...$args): string
     {
-        $notionDatabaseId = $args[0] ?? null;
-        if ($notionDatabaseId === null) {
-            throw new \LogicException('Notion database id must be provided');
-        }
+        $notionDatabaseId = $args[0] ?? throw new \LogicException('Notion database id must be provided');
 
         /** @phpstan-ignore-next-line  */
         return (string) $notionDatabaseId;
     }
 
     /**
-     * @param SerieInterface[] $seriesOnNotion
-     * @param AnimeEpisode[] $latestEpisodesOnCrunchyroll
-     * @return void
+     * @param SerieInterface[] $series
+     * @param AnimeEpisode[] $episodes
      */
-    private function syncSeries(array $seriesOnNotion, array $latestEpisodesOnCrunchyroll): void
+    private function syncEpisodes(array $series, array $episodes): void
     {
-        foreach ($seriesOnNotion as $serie) {
-            if ($this->isMarkedAsNewEpisode($serie)) {
-                continue;
-            }
-
-            $serieName = strtolower($serie->getName());
-
-            $crunchyrollEpisode = $latestEpisodesOnCrunchyroll[$serieName] ?? null;
-            if ($crunchyrollEpisode === null) {
-                $this->logger->info("Skipped Series[name={$serie->getName()}], found no new Episodes");
-
-                continue;
-            }
-
-            $this->updateSerieIfNeeded($serie, $crunchyrollEpisode);
+        foreach ($series as $serie) {
+            $serie->isMarkedAsNewEpisode()
+                ? $this->logAlreadyFlagged($serie->getName())
+                : $this->processSeries($serie, $episodes);
         }
     }
 
-    private function isMarkedAsNewEpisode(SerieInterface $serie): bool
+    /**
+     * @param AnimeEpisode[] $episodes
+     */
+    private function processSeries(SerieInterface $serie, array $episodes): void
     {
-        if ($serie->getCurrentEpisodeStatus() === EpisodeStatus::NEW_EPISODE) {
-            $this->logger->info("Skipped Series[name={$serie->getName()}], since it's already marked as New Episode");
+        $newEpisode = $episodes[strtolower($serie->getName())] ?? null;
 
-            return true;
-        }
-
-        return false;
+        $newEpisode === null
+            ? $this->logNoEpisodes($serie->getName())
+            : $this->updateSerieIfNeeded($serie, $newEpisode);
     }
 
-    private function updateSerieIfNeeded(SerieInterface $serie, AnimeEpisode $crunchyrollEpisode): void
+    private function updateSerieIfNeeded(SerieInterface $serie, AnimeEpisode $newEpisode): void
     {
-        $isOldEpisode = $serie->getCurrentEpisode()->isOldEpisode(
-            $crunchyrollEpisode->getSeasonNumber(),
-            $crunchyrollEpisode->getEpisodeNumber()
-        );
+        $current = new CurrentEpisode($serie->getCurrentEpisode());
 
-        $isBehindMultipleEpisodes = $serie->getCurrentEpisode()->isBehindMultipleEpisodes(
-            $crunchyrollEpisode->getSeasonNumber(),
-            $crunchyrollEpisode->getEpisodeNumber()
-        );
-
-        if (!$isOldEpisode) {
-            $this->logger->info(
-                "Matched Series[name={$serie->getName()}, season={$crunchyrollEpisode->getSeasonNumber()}, episode={$crunchyrollEpisode->getEpisodeNumber()}] but has no new episodes."
+        if (!$current->isNewEpisode($newEpisode)) {
+            $this->logNothingNew(
+                $serie->getName(),
+                $newEpisode->getSeasonNumber(),
+                $newEpisode->getEpisodeNumber(),
             );
 
             return;
         }
 
-        if ($isBehindMultipleEpisodes) {
-            $this->logger->info(
-                "Matched Series[name={$serie->getName()}], but too many episodes behind, only updated the badge, and current link to Unknown"
-            );
-
-            $serie->setCurrentEpisodeStatus(EpisodeStatus::newEpisode());
-            $serie->setCurrentEpisodeUrl("You're behind multiple episodes");
-
-            $this->notion->series()->update($serie);
-
-            return;
-        }
-
-        $this->updateSerieDetails($serie, $crunchyrollEpisode);
+        $current->isBehind($newEpisode)
+            ? $this->setSeriesBehind($serie)
+            : $this->setSeriesNewEpisode($serie, $newEpisode);
     }
 
-    private function updateSerieDetails(SerieInterface $serie, AnimeEpisode $crunchyrollEpisode): void
+    private function setSeriesNewEpisode(SerieInterface $serie, AnimeEpisode $newEpisode): void
     {
+        $this->logIsNew($newEpisode);
+
         $serie->setPreviousEpisode($serie->getCurrentEpisode());
         $serie->setCurrentEpisode(new Episode(
-            $crunchyrollEpisode->getSeasonNumber(),
-            $crunchyrollEpisode->getEpisodeNumber(),
+            $newEpisode->getSeasonNumber(),
+            $newEpisode->getEpisodeNumber(),
         ));
-        $serie->setCurrentEpisodeUrl($crunchyrollEpisode->getLink());
+        $serie->setCurrentEpisodeUrl($newEpisode->getLink());
         $serie->setCurrentEpisodeStatus(EpisodeStatus::newEpisode());
 
         $this->notion->series()->update($serie);
+    }
+
+    protected function setSeriesBehind(SerieInterface $serie): void
+    {
+        $this->logIsBehind($serie->getName());
+
+        $serie->setCurrentEpisodeStatus(EpisodeStatus::newEpisode());
+        $serie->setCurrentEpisodeUrl("You're behind multiple episodes");
+
+        $this->notion->series()->update($serie);
+    }
+
+    private function logAlreadyFlagged(string $seriesName): void
+    {
+        $this->logger->info("Skipped Series[name={$seriesName}], since it's already marked as New Episode");
+    }
+
+    protected function logNoEpisodes(string $seriesName): void
+    {
+        $this->logger->info("Skipped Series[name={$seriesName}], found no new Episodes");
+    }
+
+    protected function logNothingNew(string $seriesName, int $season, int $episode): void
+    {
+        $this->logger->info(
+            "Matched Series[name={$seriesName}, season={$season}, episode={$episode}] but has no new episodes."
+        );
+    }
+
+    protected function logIsBehind(string $seriesName): void
+    {
+        $this->logger->info(
+            "Matched Series[name={$seriesName}], but too many episodes behind, only updated the badge, and current link to Unknown"
+        );
+    }
+
+    protected function logIsNew(AnimeEpisode $episode): void
+    {
+        $this->logger->info(
+            "Matched Series[name={$episode->getSeriesTitle()}, season={$episode->getSeasonNumber()}, episode={$episode->getEpisodeNumber()}] synced to Notion"
+        );
     }
 }

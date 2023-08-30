@@ -152,6 +152,24 @@ it('should log an info message when behind several episodes', function () {
     expect($spyLogger->getLogs())->toContain('Matched Series[name=Naruto], but too many episodes behind, only updated the badge, and current link to Unknown');
 });
 
+it('should log an info message when new episode', function () {
+    $spyLogger = new SpyLogger();
+    [$notionSpy, $crunchyrollSpy] = createSpies(
+        crunchyrollLatestSeason: 1,
+        crunchyrollLatestEpisodeNumber: 2,
+        currentEpisodeStatus: EpisodeStatus::watched(),
+    );
+
+    $sync = new CrunchyrollToNotionSync(
+        new CrunchyrollApiClient($crunchyrollSpy),
+        new NotionApiClient($notionSpy),
+        $spyLogger
+    );
+    $sync('fake-notion-database-id');
+
+    expect($spyLogger->getLogs())->toContain('Matched Series[name=Naruto, season=1, episode=2] synced to Notion');
+});
+
 function createSpies(
     string $serieName = 'Naruto',
     int $notionCurrentSeason = 1,

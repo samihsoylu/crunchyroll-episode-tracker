@@ -8,6 +8,7 @@ use BadMethodCallException;
 use Notion\Databases\Properties\SelectOption;
 use Notion\Pages\Page;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
+use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
 
 final class FakeSerie implements SerieInterface
@@ -57,6 +58,11 @@ final class FakeSerie implements SerieInterface
         $this->currentEpisodeStatus = $status;
 
         return $this;
+    }
+
+    public function isMarkedAsNewEpisode(): bool
+    {
+        return $this->getCurrentEpisodeStatus() === EpisodeStatus::NEW_EPISODE;
     }
 
     public static function fromApiPage(Page $page): self

@@ -21,10 +21,10 @@ it('should throw an exception for invalid string formats', function () {
 it('should determine if an episode is older', function () {
     $episode = new Episode(1, 1);
 
-    expect($episode->isOldEpisode(1, 2))->toBeTrue()
-        ->and($episode->isOldEpisode(2, 1))->toBeTrue()
-        ->and($episode->isOldEpisode(1, 1))->toBeFalse()
-        ->and($episode->isOldEpisode(0, 1))->toBeFalse();
+    expect($episode->isNewEpisode(1, 2))->toBeTrue()
+        ->and($episode->isNewEpisode(2, 1))->toBeTrue()
+        ->and($episode->isNewEpisode(1, 1))->toBeFalse()
+        ->and($episode->isNewEpisode(0, 1))->toBeFalse();
 });
 
 it('it should handle double-digit seasons and episodes', function () {
@@ -52,7 +52,7 @@ it('should update and return the episode number', function () {
 it('should handle edge cases in isOldEpisode method', function () {
     $episode = new Episode(1, 1);
 
-    expect($episode->isOldEpisode(0, 0))->toBeFalse();
+    expect($episode->isNewEpisode(0, 0))->toBeFalse();
 });
 
 it('should determine if is behind multiple episodes', function () {

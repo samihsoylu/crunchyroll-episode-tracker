@@ -24,6 +24,8 @@ interface SerieInterface
 
     public function setCurrentEpisodeStatus(SelectOption $status): self;
 
+    public function isMarkedAsNewEpisode(): bool;
+
     public static function fromApiPage(Page $page): self;
 
     public function toApiPage(): Page;

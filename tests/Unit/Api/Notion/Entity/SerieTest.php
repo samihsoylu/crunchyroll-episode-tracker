@@ -75,3 +75,10 @@ it('should get the current episode status of the serie', function () {
 
     expect($serie->getCurrentEpisodeStatus())->toBe(EpisodeStatus::WATCHED);
 });
+
+
+it('should get the marked as new episode false', function () {
+    $serie = Serie::fromApiPage(getMockPage());
+
+    expect($serie->isMarkedAsNewEpisode())->toBeFalse();
+});

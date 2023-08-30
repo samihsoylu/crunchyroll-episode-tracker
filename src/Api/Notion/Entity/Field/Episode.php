@@ -39,7 +39,7 @@ final class Episode implements \Stringable
         return $this;
     }
 
-    public function isOldEpisode(int $seasonNumber, int $episodeNumber): bool
+    public function isNewEpisode(int $seasonNumber, int $episodeNumber): bool
     {
         if ($this->seasonNumber < $seasonNumber) {
             return true;

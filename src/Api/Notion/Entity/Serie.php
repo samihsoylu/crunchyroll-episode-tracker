@@ -11,6 +11,7 @@ use Notion\Pages\Properties\RichTextProperty;
 use Notion\Pages\Properties\Select;
 use Notion\Pages\Properties\Url;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
+use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
 
 class Serie implements SerieInterface
 {
@@ -97,6 +98,11 @@ class Serie implements SerieInterface
         $this->page = $this->page->changeProperties($updatedProperties->getAll());
 
         return $this;
+    }
+
+    public function isMarkedAsNewEpisode(): bool
+    {
+        return $this->getCurrentEpisodeStatus() === EpisodeStatus::NEW_EPISODE;
     }
 
     public static function fromApiPage(Page $page): self
