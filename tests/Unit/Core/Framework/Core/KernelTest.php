@@ -20,12 +20,12 @@ it('should initialize container', function () {
     expect($kernel->container)->toBeInstanceOf(ContainerInterface::class);
 });
 
-it('should throw when environment variable is nto set', function () {
-    $this->env = $_ENV['APP_ENV'];
+it('should throw when environment variable is not set', function () {
+    $env = $_ENV['APP_ENV'];
     unset($_ENV['APP_ENV']);
 
-    afterEach(function () {
-        $_ENV['APP_ENV'] = $this->env;
+    afterEach(function () use ($env) {
+        $_ENV['APP_ENV'] = $env;
     });
 
     Kernel::boot();

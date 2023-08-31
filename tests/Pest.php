@@ -13,10 +13,10 @@ declare(strict_types=1);
 |
 */
 
-use Notion\Pages\Page;
-use SamihSoylu\Crunchyroll\Tests\Framework\BaseTestCase;
+use SamihSoylu\Crunchyroll\Core\Framework\Core\Kernel;
+use SamihSoylu\Crunchyroll\Tests\Framework\Core\TestKit;
 
-uses(BaseTestCase::class)->group('Unit')->in('Unit');
+uses()->group('Unit')->in('Unit');
 
 /*
 |--------------------------------------------------------------------------
@@ -44,10 +44,13 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function getMockPage(): Page
+function testKit(): TestKit
 {
-    $json = file_get_contents(__DIR__ . '/Framework/TestDouble/Json/MockPage.json');
-    $array = json_decode($json, true);
+    static $kernel = null;
 
-    return Page::fromArray($array);
+    if ($kernel === null) {
+        $kernel = Kernel::boot();
+    }
+
+    return $kernel->container->get(TestKit::class);
 }

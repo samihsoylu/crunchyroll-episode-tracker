@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Spy;
+namespace SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Fake;
 
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\Repository\AnimeEpisodeRepositoryInterface;
 
-final class SpyAnimeEpisodeRepository implements AnimeEpisodeRepositoryInterface
+final class FakeAnimeEpisodeRepository implements AnimeEpisodeRepositoryInterface
 {
     /** @var AnimeEpisode[] */
     private array $latestEpisodes = [];

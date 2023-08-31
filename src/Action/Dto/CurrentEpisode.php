@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Cronjob\Dto;
+namespace SamihSoylu\Crunchyroll\Action\Dto;
 
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;

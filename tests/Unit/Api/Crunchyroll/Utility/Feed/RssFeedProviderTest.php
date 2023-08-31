@@ -2,42 +2,44 @@
 
 declare(strict_types=1);
 
-use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Psr7\Response;
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\Feed\RssFeedProvider;
 
-beforeEach(function () {
-    $this->httpClient = $this->createMock(GuzzleHttpClient::class);
-    $this->rssFeedUrl = 'https://some-rss-feed-url.com';
-    $this->rssFeedProvider = new RssFeedProvider($this->rssFeedUrl, $this->httpClient);
-});
-
-it('should return SimpleXMLElement when HTTP status code is 200', function () {
+it('should return simple xml element when http status code is 200', function () {
+    $feedUrl = 'feed.com';
     $xmlContent = '<?xml version="1.0" encoding="UTF-8"?><rss></rss>';
-    $this->httpClient->expects($this->once())
-        ->method('get')
-        ->with($this->rssFeedUrl)
-        ->willReturn(new Response(200, [], $xmlContent));
+    $mockHttp = testKit()->crunchyroll()->createMockHttpClient(
+        method: 'get',
+        with: $feedUrl,
+        willReturn: new Response(200, [], $xmlContent)
+    );
 
-    $result = $this->rssFeedProvider->getFeed();
+    $feedProvider = new RssFeedProvider($feedUrl, $mockHttp);
+    $result = $feedProvider->getFeed();
 
     expect($result)->toBeInstanceOf(SimpleXMLElement::class);
 });
 
-it('should throw RuntimeException when HTTP status code is not 200', function () {
-    $this->httpClient->expects($this->once())
-        ->method('get')
-        ->with($this->rssFeedUrl)
-        ->willReturn(new Response(404));
+it('should throw runtime exception when http status code is not 200', function () {
+    $feedUrl = 'feed.com';
+    $mockHttp = testKit()->crunchyroll()->createMockHttpClient(
+        method: 'get',
+        with: $feedUrl,
+        willReturn: new Response(404)
+    );
 
-    $this->rssFeedProvider->getFeed();
+    $feedProvider = new RssFeedProvider($feedUrl, $mockHttp);
+    $feedProvider->getFeed();
 })->throws(RuntimeException::class, 'Could not retrieve RSS feed');
 
-it('should throw RuntimeException when retrieved xml is corrupt', function () {
-    $this->httpClient->expects($this->once())
-        ->method('get')
-        ->with($this->rssFeedUrl)
-        ->willReturn(new Response(200, [], null));
+it('should throw runtime exception when retrieved xml is corrupt', function () {
+    $feedUrl = 'feed.com';
+    $mockHttp = testKit()->crunchyroll()->createMockHttpClient(
+        method: 'get',
+        with: $feedUrl,
+        willReturn: new Response(200, [], null)
+    );
 
-    $this->rssFeedProvider->getFeed();
+    $feedProvider = new RssFeedProvider($feedUrl, $mockHttp);
+    $feedProvider->getFeed();
 })->throws(RuntimeException::class, 'Could not parse feed data, feed data is corrupt');

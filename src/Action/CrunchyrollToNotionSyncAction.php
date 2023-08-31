@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Cronjob;
+namespace SamihSoylu\Crunchyroll\Action;
 
 use Psr\Log\LoggerInterface;
+use SamihSoylu\Crunchyroll\Action\Dto\CurrentEpisode;
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\CrunchyrollApiClient;
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
 use SamihSoylu\Crunchyroll\Api\Notion\NotionApiClient;
-use SamihSoylu\Crunchyroll\Cronjob\Dto\CurrentEpisode;
 
-final readonly class CrunchyrollToNotionSync implements CronjobInterface
+final readonly class CrunchyrollToNotionSyncAction implements ActionInterface
 {
     public function __construct(
         private CrunchyrollApiClient $crunchyroll,

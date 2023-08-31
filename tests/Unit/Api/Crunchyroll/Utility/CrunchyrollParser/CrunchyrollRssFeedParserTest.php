@@ -5,7 +5,7 @@ declare(strict_types=1);
 use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\CrunchyrollParser\CrunchyrollRssFeedRssParser;
 use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Fake\FakeRssFeedProvider;
 
-it('should successfully parse RSS feed', function () {
+it('should successfully parse rss feed', function () {
     $fakeFeed = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
 <rss>

@@ -1,7 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-use SamihSoylu\Crunchyroll\Console\Cronjob\SyncCommand;
 use SamihSoylu\Crunchyroll\Core\Framework\Core\Kernel;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;

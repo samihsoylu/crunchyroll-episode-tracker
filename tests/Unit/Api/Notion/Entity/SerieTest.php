@@ -6,21 +6,21 @@ use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
 use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
 
 it('should get the name of the serie', function () {
-    $serie = Serie::fromApiPage(getMockPage());
+    $serie = Serie::fromApiPage(testKit()->notion()->loadFakePage());
 
     expect($serie->getName())->toBe('Am I Actually the Strongest?');
 });
 
 
 it('should get the current episode of the serie', function () {
-    $serie = Serie::fromApiPage(getMockPage());
+    $serie = Serie::fromApiPage(testKit()->notion()->loadFakePage());
 
     expect($serie->getCurrentEpisode()->getSeasonNumber())->toBe(1)
         ->and($serie->getCurrentEpisode()->getEpisodeNumber())->toBe(6);
 });
 
 it('should set the current episode of the serie', function () {
-    $serie = Serie::fromApiPage(getMockPage());
+    $serie = Serie::fromApiPage(testKit()->notion()->loadFakePage());
     $newEpisode = Episode::fromString('S01E07');
 
     $serie->setCurrentEpisode($newEpisode);
@@ -30,7 +30,7 @@ it('should set the current episode of the serie', function () {
 });
 
 it('should set the previous episode of the serie', function () {
-    $serie = Serie::fromApiPage(getMockPage());
+    $serie = Serie::fromApiPage(testKit()->notion()->loadFakePage());
     $previousEpisode = Episode::fromString('S01E05');
 
     $serie->setPreviousEpisode($previousEpisode);
@@ -43,8 +43,8 @@ it('should set the previous episode of the serie', function () {
     expect($actualPreviousEpisode)->toBe('S01E05');
 });
 
-it('should set the current episode URL of the serie', function () {
-    $serie = Serie::fromApiPage(getMockPage());
+it('should set the current episode url of the serie', function () {
+    $serie = Serie::fromApiPage(testKit()->notion()->loadFakePage());
     $newUrl = 'https://new-episode-url.com';
 
     $serie->setCurrentEpisodeUrl($newUrl);
@@ -58,7 +58,7 @@ it('should set the current episode URL of the serie', function () {
 });
 
 it('should set the current episode status of the serie', function () {
-    $serie = Serie::fromApiPage(getMockPage());
+    $serie = Serie::fromApiPage(testKit()->notion()->loadFakePage());
 
     $serie->setCurrentEpisodeStatus(EpisodeStatus::newEpisode());
 
@@ -71,14 +71,14 @@ it('should set the current episode status of the serie', function () {
 });
 
 it('should get the current episode status of the serie', function () {
-    $serie = Serie::fromApiPage(getMockPage());
+    $serie = Serie::fromApiPage(testKit()->notion()->loadFakePage());
 
     expect($serie->getCurrentEpisodeStatus())->toBe(EpisodeStatus::WATCHED);
 });
 
 
 it('should get the marked as new episode false', function () {
-    $serie = Serie::fromApiPage(getMockPage());
+    $serie = Serie::fromApiPage(testKit()->notion()->loadFakePage());
 
     expect($serie->isMarkedAsNewEpisode())->toBeFalse();
 });
