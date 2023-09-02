@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SamihSoylu\CrunchyrollSyncer\Tests\Framework\Core;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
+use Mockery;
 use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Entity\AnimeEpisode;
 use SamihSoylu\CrunchyrollSyncer\Tests\Framework\Builder\AnimeEpisodeBuilder;
 use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Fake\FakeAnimeEpisodeRepository;
@@ -45,7 +46,7 @@ final class CrunchyrollTestHelper
         string $with,
         mixed $willReturn
     ): GuzzleHttpClient {
-        $client = \Mockery::mock(GuzzleHttpClient::class);
+        $client = Mockery::mock(GuzzleHttpClient::class);
         $client->shouldReceive($method)
             ->once()
             ->with($with)

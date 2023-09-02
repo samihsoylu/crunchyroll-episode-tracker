@@ -13,6 +13,9 @@ use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Spy\SpySeriesReposit
 
 final class ActionTestHelper
 {
+    /**
+     * @return array{SpySeriesRepository, FakeAnimeEpisodeRepository}
+     */
     public function createCrunchyrollToNotionSyncActionSpies(
         string $serieName = 'Naruto',
         int $notionCurrentSeason = 1,

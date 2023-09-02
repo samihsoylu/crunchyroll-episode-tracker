@@ -37,6 +37,9 @@ final class TestKit
         return dirname(__DIR__) . '/TestDouble';
     }
 
+    /**
+     * @param array<array-key, mixed> $args
+     */
     public function executeConsoleCommand(Command $command, array $args = []): CommandTester
     {
         $console = new Application();
