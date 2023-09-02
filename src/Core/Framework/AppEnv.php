@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Core\Framework;
+namespace SamihSoylu\CrunchyrollSyncer\Core\Framework;
 
 enum AppEnv: string
 {

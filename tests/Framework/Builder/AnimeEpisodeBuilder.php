@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Tests\Framework\Builder;
+namespace SamihSoylu\CrunchyrollSyncer\Tests\Framework\Builder;
 
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Entity\AnimeEpisode;
 
 final class AnimeEpisodeBuilder
 {

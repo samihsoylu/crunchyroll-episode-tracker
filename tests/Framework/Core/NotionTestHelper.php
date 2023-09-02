@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Tests\Framework\Core;
+namespace SamihSoylu\CrunchyrollSyncer\Tests\Framework\Core;
 
 use Mockery;
 use Mockery\MockInterface;

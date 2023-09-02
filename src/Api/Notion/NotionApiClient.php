@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Api\Notion;
+namespace SamihSoylu\CrunchyrollSyncer\Api\Notion;
 
-use SamihSoylu\Crunchyroll\Api\Notion\Repository\SeriesRepositoryInterface;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Repository\SeriesRepositoryInterface;
 
 final readonly class NotionApiClient
 {

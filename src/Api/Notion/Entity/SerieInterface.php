@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Api\Notion\Entity;
+namespace SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity;
 
 use Notion\Databases\Properties\SelectOption;
 use Notion\Pages\Page;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field\Episode;
 
 interface SerieInterface
 {

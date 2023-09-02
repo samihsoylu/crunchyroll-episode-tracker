@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Repository\AnimeEpisodeRepository;
-use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Fake\FakeCrunchyrollRssParser;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Repository\AnimeEpisodeRepository;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Fake\FakeCrunchyrollRssParser;
 
 it('should retrieve latest episodes', function () {
     $fakeParser = new FakeCrunchyrollRssParser(testKit()->crunchyroll()->createRssFeedXml());

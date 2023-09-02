@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Action;
+namespace SamihSoylu\CrunchyrollSyncer\Action;
 
 use Psr\Log\LoggerInterface;
-use SamihSoylu\Crunchyroll\Action\Dto\CurrentEpisode;
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\CrunchyrollApiClient;
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
-use SamihSoylu\Crunchyroll\Api\Notion\NotionApiClient;
+use SamihSoylu\CrunchyrollSyncer\Action\Dto\CurrentEpisode;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\CrunchyrollApiClient;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Entity\AnimeEpisode;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field\Episode;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Option\EpisodeStatus;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\SerieInterface;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\NotionApiClient;
 
 final readonly class CrunchyrollToNotionSyncAction implements ActionInterface
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field\Episode;
 
 it('should be instantiated and converted to a string', function () {
     $episode = new Episode(1, 1);

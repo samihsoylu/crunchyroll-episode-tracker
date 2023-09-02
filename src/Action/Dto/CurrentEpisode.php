@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Action\Dto;
+namespace SamihSoylu\CrunchyrollSyncer\Action\Dto;
 
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Entity\AnimeEpisode;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field\Episode;
 
 final class CurrentEpisode
 {

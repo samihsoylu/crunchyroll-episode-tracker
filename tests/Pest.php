@@ -13,8 +13,8 @@ declare(strict_types=1);
 |
 */
 
-use SamihSoylu\Crunchyroll\Core\Framework\Core\Kernel;
-use SamihSoylu\Crunchyroll\Tests\Framework\Core\TestKit;
+use SamihSoylu\CrunchyrollSyncer\Core\Framework\Core\Kernel;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\Core\TestKit;
 
 uses()->group('Unit')->in('Unit');
 

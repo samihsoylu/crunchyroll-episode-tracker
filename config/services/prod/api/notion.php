@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use DI\Container;
 use Notion\Notion;
-use SamihSoylu\Crunchyroll\Api\Notion\Repository\SeriesRepository;
-use SamihSoylu\Crunchyroll\Api\Notion\Repository\SeriesRepositoryInterface;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Repository\SeriesRepository;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Repository\SeriesRepositoryInterface;
 
 return function (Container $container) {
     $container->set(Notion::class, function () {

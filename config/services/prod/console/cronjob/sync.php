@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use DI\Container;
-use SamihSoylu\Crunchyroll\Action\CrunchyrollToNotionSyncAction;
-use SamihSoylu\Crunchyroll\Console\Cronjob\CrunchyrollToNotion\SyncCommand;
+use SamihSoylu\CrunchyrollSyncer\Action\CrunchyrollToNotionSyncAction;
+use SamihSoylu\CrunchyrollSyncer\Console\Action\CrunchyrollToNotion\SyncCommand;
 
 return function (Container $container) {
     $container->set(SyncCommand::class, function (Container $container) {

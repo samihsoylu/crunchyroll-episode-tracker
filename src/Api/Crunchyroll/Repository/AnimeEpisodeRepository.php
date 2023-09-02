@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Api\Crunchyroll\Repository;
+namespace SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Repository;
 
 use LogicException;
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\CrunchyrollParser\CrunchyrollRssParserInterface;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Entity\AnimeEpisode;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\CrunchyrollParser\CrunchyrollRssParserInterface;
 use SimpleXMLElement;
 
 final class AnimeEpisodeRepository implements AnimeEpisodeRepositoryInterface

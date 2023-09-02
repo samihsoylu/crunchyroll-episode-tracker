@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Notion\Databases\Properties\SelectOption;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Option\EpisodeStatus;
 
 it('should return a new episode select option', function () {
     $selectOption = EpisodeStatus::newEpisode();

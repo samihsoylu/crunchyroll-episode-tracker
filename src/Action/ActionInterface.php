@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Action;
+namespace SamihSoylu\CrunchyrollSyncer\Action;
 
 interface ActionInterface
 {

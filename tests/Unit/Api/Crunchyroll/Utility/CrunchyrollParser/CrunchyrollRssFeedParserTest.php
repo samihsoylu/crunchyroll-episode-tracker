@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\CrunchyrollParser\CrunchyrollRssFeedRssParser;
-use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Fake\FakeRssFeedProvider;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\CrunchyrollParser\CrunchyrollRssFeedRssParser;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Fake\FakeRssFeedProvider;
 
 it('should successfully parse rss feed', function () {
     $fakeFeed = <<<XML

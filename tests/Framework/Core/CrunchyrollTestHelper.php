@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Tests\Framework\Core;
+namespace SamihSoylu\CrunchyrollSyncer\Tests\Framework\Core;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
-use SamihSoylu\Crunchyroll\Tests\Framework\Builder\AnimeEpisodeBuilder;
-use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Fake\FakeAnimeEpisodeRepository;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Entity\AnimeEpisode;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\Builder\AnimeEpisodeBuilder;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Fake\FakeAnimeEpisodeRepository;
 use SimpleXMLElement;
 
 final class CrunchyrollTestHelper

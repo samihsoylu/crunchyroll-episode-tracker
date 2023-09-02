@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Entity\AnimeEpisode;
 
 it('should create anime episode from simple xml element', function () {
     $xml = new SimpleXMLElement(

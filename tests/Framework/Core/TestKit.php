@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Tests\Framework\Core;
+namespace SamihSoylu\CrunchyrollSyncer\Tests\Framework\Core;
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;

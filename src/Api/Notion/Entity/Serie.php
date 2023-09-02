@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Api\Notion\Entity;
+namespace SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity;
 
 use Notion\Common\RichText;
 use Notion\Databases\Properties\SelectOption;
@@ -10,8 +10,8 @@ use Notion\Pages\Page;
 use Notion\Pages\Properties\RichTextProperty;
 use Notion\Pages\Properties\Select;
 use Notion\Pages\Properties\Url;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field\Episode;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Option\EpisodeStatus;
 
 class Serie implements SerieInterface
 {

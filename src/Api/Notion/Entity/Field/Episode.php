@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Api\Notion\Entity\Field;
+namespace SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field;
 
 final class Episode implements \Stringable
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Api\Notion\Repository;
+namespace SamihSoylu\CrunchyrollSyncer\Api\Notion\Repository;
 
 use Notion\Notion;
 use Notion\Pages\Page;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Serie;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\SerieInterface;
 
 final readonly class SeriesRepository implements SeriesRepositoryInterface
 {

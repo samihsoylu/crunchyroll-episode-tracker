@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Notion\Pages\Client as PagesClient;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
-use SamihSoylu\Crunchyroll\Api\Notion\Repository\SeriesRepository;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Serie;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\SerieInterface;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Repository\SeriesRepository;
 
 it('should get all series from a database', function () {
     $fakePage = testKit()->notion()->loadFakePage();

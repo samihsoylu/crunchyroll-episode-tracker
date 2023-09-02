@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use SamihSoylu\Crunchyroll\Action\CrunchyrollToNotionSyncAction;
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\CrunchyrollApiClient;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
-use SamihSoylu\Crunchyroll\Api\Notion\NotionApiClient;
-use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Dummy\DummyLogger;
-use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Spy\SpyLogger;
+use SamihSoylu\CrunchyrollSyncer\Action\CrunchyrollToNotionSyncAction;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\CrunchyrollApiClient;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Option\EpisodeStatus;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\NotionApiClient;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Dummy\DummyLogger;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Spy\SpyLogger;
 
 it('should update the series if a new crunchyroll episode is found', function () {
     [$notionSpy, $crunchyrollSpy] = testKit()->action()->createCrunchyrollToNotionSyncActionSpies(

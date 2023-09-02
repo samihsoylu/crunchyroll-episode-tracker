@@ -7,7 +7,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
+use SamihSoylu\CrunchyrollSyncer\Core\Framework\AppEnv;
 use Symfony\Component\Console\Application;
 
 return function (Container $container) {

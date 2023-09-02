@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\Feed;
+namespace SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\Feed;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
 use SimpleXMLElement;

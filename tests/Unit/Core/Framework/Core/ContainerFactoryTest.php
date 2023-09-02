@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 use Psr\Container\ContainerInterface;
-use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
-use SamihSoylu\Crunchyroll\Core\Framework\Core\ContainerFactory;
-use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Dummy\DummyObjectInterface;
-use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Dummy\DummyProdObject;
-use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Dummy\DummyTestObject;
+use SamihSoylu\CrunchyrollSyncer\Core\Framework\AppEnv;
+use SamihSoylu\CrunchyrollSyncer\Core\Framework\Core\ContainerFactory;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Dummy\DummyObjectInterface;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Dummy\DummyProdObject;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Dummy\DummyTestObject;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 
 it('should create a container', function () {

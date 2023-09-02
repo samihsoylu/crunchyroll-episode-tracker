@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Spy;
+namespace SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Spy;
 
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;

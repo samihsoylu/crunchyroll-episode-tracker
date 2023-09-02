@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Core\Framework\Core;
+namespace SamihSoylu\CrunchyrollSyncer\Core\Framework\Core;
 
 use Psr\Container\ContainerInterface;
-use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
+use SamihSoylu\CrunchyrollSyncer\Core\Framework\AppEnv;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor

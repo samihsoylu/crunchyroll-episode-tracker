@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Spy;
+namespace SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Spy;
 
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\SerieInterface;
-use SamihSoylu\Crunchyroll\Api\Notion\Repository\SeriesRepositoryInterface;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Serie;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\SerieInterface;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Repository\SeriesRepositoryInterface;
 
 final class SpySeriesRepository implements SeriesRepositoryInterface
 {

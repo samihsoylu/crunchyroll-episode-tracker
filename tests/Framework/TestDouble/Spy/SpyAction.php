@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Spy;
+namespace SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Spy;
 
-use SamihSoylu\Crunchyroll\Action\ActionInterface;
+use SamihSoylu\CrunchyrollSyncer\Action\ActionInterface;
 
 final class SpyAction implements ActionInterface
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Console\Cronjob\CrunchyrollToNotion;
+namespace SamihSoylu\CrunchyrollSyncer\Console\Action\CrunchyrollToNotion;
 
-use SamihSoylu\Crunchyroll\Action\ActionInterface;
-use SamihSoylu\Crunchyroll\Action\CrunchyrollToNotionSyncAction;
+use SamihSoylu\CrunchyrollSyncer\Action\ActionInterface;
+use SamihSoylu\CrunchyrollSyncer\Action\CrunchyrollToNotionSyncAction;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,7 +21,7 @@ final class SyncCommand extends Command
 
     public function configure()
     {
-        $this->setName('cronjob:crunchyroll-to-notion:sync')
+        $this->setName('action:crunchyroll-to-notion:sync')
             ->setDescription('Using the Crunchyroll RSS feed up date your Notion anime page');
     }
 

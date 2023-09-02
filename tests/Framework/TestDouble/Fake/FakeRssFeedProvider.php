@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Fake;
+namespace SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Fake;
 
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\Feed\FeedProviderInterface;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\Feed\FeedProviderInterface;
 use SimpleXMLElement;
 
 final class FakeRssFeedProvider implements FeedProviderInterface

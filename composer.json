@@ -1,12 +1,12 @@
 {
-    "name": "samihsoylu/crunchyroll",
+    "name": "samihsoylu/crunchyroll-syncer",
     "description": "Crunchroll RSS Feed episode release tracking",
     "type": "project",
     "license": "GPL-3.0-only",
     "autoload": {
         "psr-4": {
-            "SamihSoylu\\Crunchyroll\\": "src/",
-            "SamihSoylu\\Crunchyroll\\Tests\\": "tests/"
+            "SamihSoylu\\CrunchyrollSyncer\\": "src/",
+            "SamihSoylu\\CrunchyrollSyncer\\Tests\\": "tests/"
         }
     },
     "authors": [

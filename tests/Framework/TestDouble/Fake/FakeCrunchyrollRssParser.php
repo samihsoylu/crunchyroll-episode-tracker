@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Fake;
+namespace SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Fake;
 
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\CrunchyrollParser\CrunchyrollRssParserInterface;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\CrunchyrollParser\CrunchyrollRssParserInterface;
 use SimpleXMLElement;
 
 final readonly class FakeCrunchyrollRssParser implements CrunchyrollRssParserInterface

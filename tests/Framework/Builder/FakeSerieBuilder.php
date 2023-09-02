@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Tests\Framework\Builder;
+namespace SamihSoylu\CrunchyrollSyncer\Tests\Framework\Builder;
 
 use Notion\Databases\Properties\SelectOption;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
-use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Fake\FakeSerie;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field\Episode;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Option\EpisodeStatus;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Fake\FakeSerie;
 
 final class FakeSerieBuilder
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Tests\Framework\Core;
+namespace SamihSoylu\CrunchyrollSyncer\Tests\Framework\Core;
 
 use Notion\Databases\Properties\SelectOption;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
-use SamihSoylu\Crunchyroll\Tests\Framework\Builder\AnimeEpisodeBuilder;
-use SamihSoylu\Crunchyroll\Tests\Framework\Builder\FakeSerieBuilder;
-use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Fake\FakeAnimeEpisodeRepository;
-use SamihSoylu\Crunchyroll\Tests\Framework\TestDouble\Spy\SpySeriesRepository;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field\Episode;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\Builder\AnimeEpisodeBuilder;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\Builder\FakeSerieBuilder;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Fake\FakeAnimeEpisodeRepository;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Spy\SpySeriesRepository;
 
 final class ActionTestHelper
 {

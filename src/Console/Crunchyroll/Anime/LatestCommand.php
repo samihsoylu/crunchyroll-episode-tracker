@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Console\Crunchyroll\Anime;
+namespace SamihSoylu\CrunchyrollSyncer\Console\Crunchyroll\Anime;
 
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\CrunchyrollApiClient;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\CrunchyrollApiClient;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;

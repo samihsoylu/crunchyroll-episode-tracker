@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\CrunchyrollApiClient;
-use SamihSoylu\Crunchyroll\Console\Crunchyroll\Anime\LatestCommand;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\CrunchyrollApiClient;
+use SamihSoylu\CrunchyrollSyncer\Console\Crunchyroll\Anime\LatestCommand;
 
 it('should display latest episodes correctly', function () {
     $expectedEpisodes = testKit()->crunchyroll()->createExpectedEpisodes();

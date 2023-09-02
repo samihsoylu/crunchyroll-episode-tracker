@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Api\Notion\Entity\Option;
+namespace SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Option;
 
 use Notion\Databases\Properties\SelectOption;
 

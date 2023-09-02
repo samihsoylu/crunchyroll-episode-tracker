@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use SamihSoylu\Crunchyroll\Core\Framework\Core\Kernel;
+use SamihSoylu\CrunchyrollSyncer\Core\Framework\Core\Kernel;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Finder\Finder;
@@ -20,7 +20,7 @@ $console = $kernel->container->get(Application::class);
 $find = new Finder();
 $commands = $find->files()->in($_ENV['ROOT_DIR'] . '/src/Console');
 
-$commandNamespace = 'SamihSoylu\\Crunchyroll\\Console\\';
+$commandNamespace = 'SamihSoylu\\CrunchyrollSyncer\\Console\\';
 foreach ($commands as $command) {
     $className = str_replace('.php', '', $command->getRelativePathname());
     $className = str_replace('/', '\\', $className);

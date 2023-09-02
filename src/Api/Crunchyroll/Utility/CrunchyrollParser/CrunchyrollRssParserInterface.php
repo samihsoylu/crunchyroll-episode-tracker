@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\CrunchyrollParser;
+namespace SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\CrunchyrollParser;
 
 use SimpleXMLElement;
 

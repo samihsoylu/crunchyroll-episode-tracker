@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use GuzzleHttp\Psr7\Response;
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\Feed\RssFeedProvider;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\Feed\RssFeedProvider;
 
 it('should return simple xml element when http status code is 200', function () {
     $feedUrl = 'feed.com';

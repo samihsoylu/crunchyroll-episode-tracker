@@ -1,9 +1,9 @@
 
 <?php
 
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Field\Episode;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Option\EpisodeStatus;
-use SamihSoylu\Crunchyroll\Api\Notion\Entity\Serie;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field\Episode;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Option\EpisodeStatus;
+use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Serie;
 
 it('should get the name of the serie', function () {
     $serie = Serie::fromApiPage(testKit()->notion()->loadFakePage());

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\CrunchyrollParser;
+namespace SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\CrunchyrollParser;
 
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Utility\Feed\FeedProviderInterface;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\Feed\FeedProviderInterface;
 use SimpleXMLElement;
 
 final class CrunchyrollRssFeedRssParser implements CrunchyrollRssParserInterface

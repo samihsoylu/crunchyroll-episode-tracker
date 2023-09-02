@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Api\Crunchyroll\Repository;
+namespace SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Repository;
 
-use SamihSoylu\Crunchyroll\Api\Crunchyroll\Entity\AnimeEpisode;
+use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Entity\AnimeEpisode;
 
 interface AnimeEpisodeRepositoryInterface
 {

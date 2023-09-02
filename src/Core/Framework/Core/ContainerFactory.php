@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\Crunchyroll\Core\Framework\Core;
+namespace SamihSoylu\CrunchyrollSyncer\Core\Framework\Core;
 
 use DI\Container;
 use LogicException;
-use SamihSoylu\Crunchyroll\Core\Framework\AppEnv;
+use SamihSoylu\CrunchyrollSyncer\Core\Framework\AppEnv;
 use Symfony\Component\Finder\Finder;
 
 final readonly class ContainerFactory
