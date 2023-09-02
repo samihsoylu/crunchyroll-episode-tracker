@@ -1,3 +1,9 @@
+[![GitHub license](https://img.shields.io/github/license/samihsoylu/crunchyroll-syncer?style=for-the-badge)](https://github.com/samihsoylu/youtrack-api-php/blob/master/LICENSE)
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/samihsoylu/crunchyroll-syncer?style=for-the-badge)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/samihsoylu/crunchyroll-syncer?label=stable&style=for-the-badge)
+![Packagist Downloads](https://img.shields.io/packagist/dt/samihsoylu/crunchyroll-syncer?style=for-the-badge)
+![Codecov](https://img.shields.io/codecov/c/github/samihsoylu/crunchyroll-syncer?style=for-the-badge)
+
 # Crunchyroll syncer
 Crunchyroll syncer is a tool designed to solve the challenges of sharing a single Crunchyroll account among multiple users. This project leverages Crunchyroll's RSS feed to automate the tracking of new episodes and integrates it with your Notion series page. With this tool, you'll no longer need to sift through cluttered watchlists or worry about missing the latest episodes of your favourite series.
 
