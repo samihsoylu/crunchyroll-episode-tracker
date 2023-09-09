@@ -14,9 +14,9 @@ final class CurrentEpisode
     ) {
     }
 
-    public function isNewEpisode(AnimeEpisode $episode): bool
+    public function isOld(AnimeEpisode $episode): bool
     {
-        return $this->episode->isNewEpisode(
+        return $this->episode->isOldEpisode(
             $episode->getSeasonNumber(),
             $episode->getEpisodeNumber(),
         );

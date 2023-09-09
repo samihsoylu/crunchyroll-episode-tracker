@@ -67,7 +67,7 @@ final readonly class CrunchyrollToNotionSyncAction implements ActionInterface
     {
         $current = new CurrentEpisode($serie->getCurrentEpisode());
 
-        if (!$current->isNewEpisode($newEpisode)) {
+        if (!$current->isOld($newEpisode)) {
             $this->logNothingNew(
                 $serie->getName(),
                 $newEpisode->getSeasonNumber(),
