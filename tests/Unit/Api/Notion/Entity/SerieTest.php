@@ -1,6 +1,7 @@
 
 <?php
 
+use Notion\Pages\Page;
 use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field\Episode;
 use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Option\EpisodeStatus;
 use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Serie;
@@ -10,6 +11,14 @@ it('should get the name of the serie', function () {
 
     expect($serie->getName())->toBe('Am I Actually the Strongest?');
 });
+
+it('should throw an exception when the serie name is not set', function () {
+    $data = testKit()->notion()->loadFakePageFile();
+    unset($data['properties']['Name']['title'][0]);
+
+    $serie = Serie::fromApiPage(Page::fromArray($data));
+    $serie->getName();
+})->throws(UnexpectedValueException::class);
 
 
 it('should get the current episode of the serie', function () {

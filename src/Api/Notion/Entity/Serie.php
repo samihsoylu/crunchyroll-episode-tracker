@@ -12,6 +12,7 @@ use Notion\Pages\Properties\Select;
 use Notion\Pages\Properties\Url;
 use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field\Episode;
 use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Option\EpisodeStatus;
+use SamihSoylu\CrunchyrollSyncer\Util\Assert;
 
 class Serie implements SerieInterface
 {
@@ -30,8 +31,15 @@ class Serie implements SerieInterface
 
     public function getName(): string
     {
-        return $this->page->properties()->get(self::FIELD_NAME)
-            ->toArray()['title'][0]['plain_text'];
+        $name = $this->page->properties()->get(self::FIELD_NAME)
+            ->toArray()['title'][0]['plain_text'] ?? null;
+
+        Assert::notNull(
+            $name,
+            'There is a series entry in Notion missing its name. Please ensure all series entries have a name assigned.'
+        );
+
+        return (string) $name;
     }
 
     public function getCurrentEpisode(): Episode

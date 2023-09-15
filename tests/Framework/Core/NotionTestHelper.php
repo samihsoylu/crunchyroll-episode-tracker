@@ -14,12 +14,16 @@ use Notion\Pages\Page;
 
 final class NotionTestHelper
 {
-    public function loadFakePage(): Page
+    public function loadFakePageFile(): array
     {
         $json = file_get_contents(dirname(__DIR__) . '/TestDouble/Fake/FakeNotionPage.json');
-        $array = json_decode($json, true);
 
-        return Page::fromArray($array);
+        return json_decode($json, true);
+    }
+
+    public function loadFakePage(): Page
+    {
+        return Page::fromArray($this->loadFakePageFile());
     }
 
     public function createMock(Page $fakePage, ?MockInterface $mockPagesClient = null): MockInterface|Notion
