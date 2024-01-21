@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace SamihSoylu\CrunchyrollSyncer\Console\Action\CrunchyrollToNotion;
 
-use SamihSoylu\CrunchyrollSyncer\Action\ActionInterface;
-use SamihSoylu\CrunchyrollSyncer\Action\CrunchyrollToNotionSyncAction;
+use SamihSoylu\CrunchyrollSyncer\Service\Contract\CrunchyrollToNotionSyncServiceInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -13,8 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class SyncCommand extends Command
 {
     public function __construct(
-        private ActionInterface $syncer,
-        private string $notionDatabaseId,
+        private CrunchyrollToNotionSyncServiceInterface $syncer,
     ) {
         parent::__construct();
     }
@@ -27,10 +25,7 @@ final class SyncCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        /** @var CrunchyrollToNotionSyncAction $syncer */
-        $syncer = $this->syncer;
-
-        $syncer->__invoke($this->notionDatabaseId);
+        $this->syncer->sync();
 
         return self::SUCCESS;
     }

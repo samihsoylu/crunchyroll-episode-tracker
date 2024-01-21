@@ -2,40 +2,34 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\CrunchyrollSyncer\Action;
+namespace SamihSoylu\CrunchyrollSyncer\Service;
 
 use Psr\Log\LoggerInterface;
-use SamihSoylu\CrunchyrollSyncer\Action\Dto\CurrentEpisode;
 use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\CrunchyrollApiClient;
 use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Entity\AnimeEpisode;
 use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field\Episode;
 use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Option\EpisodeStatus;
 use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\SerieInterface;
 use SamihSoylu\CrunchyrollSyncer\Api\Notion\NotionApiClient;
+use SamihSoylu\CrunchyrollSyncer\Service\Contract\CrunchyrollToNotionSyncServiceInterface;
+use SamihSoylu\CrunchyrollSyncer\Service\Dto\CurrentEpisode;
 
-final readonly class CrunchyrollToNotionSyncAction implements ActionInterface
+final readonly class CrunchyrollToNotionSyncService implements CrunchyrollToNotionSyncServiceInterface
 {
     public function __construct(
         private CrunchyrollApiClient $crunchyroll,
         private NotionApiClient $notion,
         private LoggerInterface $logger,
+        private string $notionDatabaseId,
     ) {
     }
 
-    public function __invoke(mixed ...$args): void
+    public function sync(): void
     {
         $episodes = $this->crunchyroll->animeEpisode()->getLatestEpisodes();
-        $series = $this->notion->series()->getAll($this->getNotionDatabaseId(...$args));
+        $series = $this->notion->series()->getAll($this->notionDatabaseId);
 
         $this->syncEpisodes($series, $episodes);
-    }
-
-    private function getNotionDatabaseId(mixed ...$args): string
-    {
-        $notionDatabaseId = $args[0] ?? throw new \LogicException('Notion database id must be provided');
-
-        /** @phpstan-ignore-next-line  */
-        return (string) $notionDatabaseId;
     }
 
     /**

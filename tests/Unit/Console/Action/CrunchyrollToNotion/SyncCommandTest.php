@@ -3,15 +3,14 @@
 declare(strict_types=1);
 
 use SamihSoylu\CrunchyrollSyncer\Console\Action\CrunchyrollToNotion\SyncCommand;
-use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Spy\SpyAction;
+use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Spy\SpyCrunchyrollToNotionSyncService;
 
 it('should invoke crunchyroll to notion sync', function () {
-    $expectedToken = 'some-id';
-    $spy = new SpyAction();
+    $spy = new SpyCrunchyrollToNotionSyncService();
 
     testKit()->executeConsoleCommand(
-        new SyncCommand($spy, $expectedToken)
+        new SyncCommand($spy)
     );
 
-    $spy->assertInvokedWith($expectedToken);
-})->expectNotToPerformAssertions();
+    $spy->assertSyncInvoked();
+});
