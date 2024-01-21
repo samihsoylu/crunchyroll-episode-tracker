@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SamihSoylu\CrunchyrollSyncer\Action\Dto;
+namespace SamihSoylu\CrunchyrollSyncer\Service\Dto;
 
 use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Entity\AnimeEpisode;
 use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Field\Episode;

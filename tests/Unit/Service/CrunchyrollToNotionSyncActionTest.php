@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use SamihSoylu\CrunchyrollSyncer\Action\CrunchyrollToNotionSyncAction;
 use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\CrunchyrollApiClient;
 use SamihSoylu\CrunchyrollSyncer\Api\Notion\Entity\Option\EpisodeStatus;
 use SamihSoylu\CrunchyrollSyncer\Api\Notion\NotionApiClient;
+use SamihSoylu\CrunchyrollSyncer\Service\CrunchyrollToNotionSyncService;
 use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Dummy\DummyLogger;
 use SamihSoylu\CrunchyrollSyncer\Tests\Framework\TestDouble\Spy\SpyLogger;
 
@@ -16,12 +16,13 @@ it('should update the series if a new crunchyroll episode is found', function ()
         currentEpisodeStatus: EpisodeStatus::watched()
     );
 
-    $sync = new CrunchyrollToNotionSyncAction(
+    $syncer = new CrunchyrollToNotionSyncService(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
-        new DummyLogger()
+        new DummyLogger(),
+        'fake-notion-database-id',
     );
-    $sync('fake-notion-database-id');
+    $syncer->sync();
 
     expect($notionSpy->getUpdatedSeries())->toHaveCount(1);
 });
@@ -32,12 +33,13 @@ it('should not update the series if no new crunchyroll episode is found', functi
         crunchyrollLatestEpisodeNumber: 1
     );
 
-    $sync = new CrunchyrollToNotionSyncAction(
+    $syncer = new CrunchyrollToNotionSyncService(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
-        new DummyLogger()
+        new DummyLogger(),
+        'fake-notion-database-id',
     );
-    $sync('fake-notion-database-id');
+    $syncer->sync();
 
     expect($notionSpy->getUpdatedSeries())->toHaveCount(0);
 });
@@ -45,12 +47,13 @@ it('should not update the series if no new crunchyroll episode is found', functi
 it('should not update the series if crunchyroll has no information about the series', function () {
     [$notionSpy, $crunchyrollSpy] = testKit()->action()->createCrunchyrollToNotionSyncActionSpies();
 
-    $sync = new CrunchyrollToNotionSyncAction(
+    $syncer = new CrunchyrollToNotionSyncService(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
-        new DummyLogger()
+        new DummyLogger(),
+        'fake-notion-database-id',
     );
-    $sync('fake-notion-database-id');
+    $syncer->sync();
 
     expect($notionSpy->getUpdatedSeries())->toHaveCount(0);
 });
@@ -62,12 +65,13 @@ it('should not update any series if there are no series in notion', function () 
         isEmptyNotion: true
     );
 
-    $sync = new CrunchyrollToNotionSyncAction(
+    $syncer = new CrunchyrollToNotionSyncService(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
-        new DummyLogger()
+        new DummyLogger(),
+        'fake-notion-database-id'
     );
-    $sync('fake-notion-database-id');
+    $syncer->sync();
 
     expect($notionSpy->getUpdatedSeries())->toHaveCount(0);
 });
@@ -77,38 +81,28 @@ it('should skip series marked as new episode', function () {
         currentEpisodeStatus: EpisodeStatus::newEpisode()
     );
 
-    $sync = new CrunchyrollToNotionSyncAction(
+    $syncer = new CrunchyrollToNotionSyncService(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
-        new DummyLogger()
+        new DummyLogger(),
+        'fake-notion-database-id',
     );
-    $sync('fake-notion-database-id');
+    $syncer->sync();
 
     expect($notionSpy->getUpdatedSeries())->toHaveCount(0);
 });
-
-it('should throw a logic exception if the notion database id is not provided', function () {
-    [$notionSpy, $crunchyrollSpy] = testKit()->action()->createCrunchyrollToNotionSyncActionSpies();
-
-    $sync = new CrunchyrollToNotionSyncAction(
-        new CrunchyrollApiClient($crunchyrollSpy),
-        new NotionApiClient($notionSpy),
-        new DummyLogger()
-    );
-
-    $sync();
-})->throws(LogicException::class)->expectExceptionMessage('Notion database id must be provided');
 
 it('should log an info message if no new crunchyroll episodes are found for the series', function () {
     $spyLogger = new SpyLogger();
     [$notionSpy, $crunchyrollSpy] = testKit()->action()->createCrunchyrollToNotionSyncActionSpies(currentEpisodeStatus: EpisodeStatus::watched());
 
-    $sync = new CrunchyrollToNotionSyncAction(
+    $syncerer = new CrunchyrollToNotionSyncService(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
-        $spyLogger
+        $spyLogger,
+        'fake-notion-database-id',
     );
-    $sync('fake-notion-database-id');
+    $syncerer->sync();
 
     expect($spyLogger->getLogs())->toContain("Skipped Series[name=Naruto], found no new Episodes");
 });
@@ -121,12 +115,13 @@ it('should log an info message if matched series but it is recent', function () 
         currentEpisodeStatus: EpisodeStatus::watched(),
     );
 
-    $sync = new CrunchyrollToNotionSyncAction(
+    $syncer = new CrunchyrollToNotionSyncService(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
-        $spyLogger
+        $spyLogger,
+        'fake-notion-database-id',
     );
-    $sync('fake-notion-database-id');
+    $syncer->sync();
 
     expect($spyLogger->getLogs())->toContain('Matched Series[name=Naruto, season=1, episode=1] but has no new episodes.');
 });
@@ -139,12 +134,13 @@ it('should log an info message when behind several episodes', function () {
         currentEpisodeStatus: EpisodeStatus::watched(),
     );
 
-    $sync = new CrunchyrollToNotionSyncAction(
+    $syncer = new CrunchyrollToNotionSyncService(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
-        $spyLogger
+        $spyLogger,
+        'fake-notion-database-id',
     );
-    $sync('fake-notion-database-id');
+    $syncer->sync();
 
     expect($spyLogger->getLogs())->toContain('Matched Series[name=Naruto], but too many episodes behind, only updated the badge, and current link to Unknown');
 });
@@ -157,12 +153,13 @@ it('should log an info message when new episode', function () {
         currentEpisodeStatus: EpisodeStatus::watched(),
     );
 
-    $sync = new CrunchyrollToNotionSyncAction(
+    $syncer = new CrunchyrollToNotionSyncService(
         new CrunchyrollApiClient($crunchyrollSpy),
         new NotionApiClient($notionSpy),
-        $spyLogger
+        $spyLogger,
+        'fake-notion-database-id'
     );
-    $sync('fake-notion-database-id');
+    $syncer->sync();
 
     expect($spyLogger->getLogs())->toContain('Matched Series[name=Naruto, season=1, episode=2] synced to Notion');
 });
