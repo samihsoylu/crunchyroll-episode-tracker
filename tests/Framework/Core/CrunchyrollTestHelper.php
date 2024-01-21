@@ -44,13 +44,23 @@ final class CrunchyrollTestHelper
     public function createMockHttpClient(
         string $method,
         string $with,
-        mixed $willReturn
+        mixed $willReturn = null,
+        array $willThrowOnConsecutiveCalls = [],
     ): GuzzleHttpClient {
         $client = Mockery::mock(GuzzleHttpClient::class);
-        $client->shouldReceive($method)
-            ->once()
-            ->with($with)
-            ->andReturn($willReturn);
+
+        if ($willThrowOnConsecutiveCalls !== []) {
+            $client->shouldReceive($method)
+                ->times(count($willThrowOnConsecutiveCalls))
+                ->andThrowExceptions($willThrowOnConsecutiveCalls);
+        }
+
+        if ($willReturn !== null) {
+            $client->shouldReceive($method)
+                ->once()
+                ->with($with)
+                ->andReturn($willReturn);
+        }
 
         return $client;
     }
