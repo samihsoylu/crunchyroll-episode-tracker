@@ -10,6 +10,7 @@ use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\CrunchyrollParser\Crunc
 use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\CrunchyrollParser\CrunchyrollRssParserInterface;
 use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\Feed\FeedProviderInterface;
 use SamihSoylu\CrunchyrollSyncer\Api\Crunchyroll\Utility\Feed\RssFeedProvider;
+use SamihSoylu\CrunchyrollSyncer\Util\Contract\SleepHelperInterface;
 
 return function (Container $container) {
     $container->set(AnimeEpisodeRepositoryInterface::class, function (Container $container) {
@@ -20,6 +21,7 @@ return function (Container $container) {
         return new RssFeedProvider(
             $_ENV['CRUNCHYROLL_RSS_FEED_URL'],
             $container->get(Client::class),
+            $container->get(SleepHelperInterface::class),
         );
     });
 
