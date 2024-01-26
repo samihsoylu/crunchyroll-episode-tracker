@@ -12,7 +12,7 @@ When a new episode of a series you're following is released, this tool automatic
 
 1. **Series Tracking**: You manually add the anime series you are watching to your Notion Series page.
 2. **RSS Feed Monitoring**: Crunchyroll Syncer continually checks the Crunchyroll RSS feed for new episodes of the series you are tracking.
-3. **Notion Page Updates**: When a new episode is released, the tool updates your Notion Series page. It marks the series with a "new episode" status and provides a direct watch URL. This allows you to immediately access the latest episode with just a click.
+3. **Notion Page Updates**: When a new episode is released, this tool updates your Notion Series page. It marks the series with a "new episode" status and provides a direct watch URL. This allows you to immediately access the latest episode with just a click.
 4. **Resetting Series Status**: After watching the new episode, you need to update the series status back to "watched" on your Notion Series page. This action is crucial as it signals Crunchyroll Syncer to resume checking the RSS feed for new episodes of that particular series.
 
 
