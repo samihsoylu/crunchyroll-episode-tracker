@@ -8,7 +8,7 @@
 Crunchyroll syncer is a tool designed to solve the challenges of sharing a single Crunchyroll account among multiple users. This project leverages Crunchyroll's RSS feed to automate the tracking of new episodes and integrates it with your Notion series page. With this tool, you'll no longer need to sift through cluttered watchlists or worry about missing the latest episodes of your favourite series.
 
 ## How it Works
-When a new episode of a series you're following is released, the tool automatically updates the corresponding entry in your Notion Series page. Here's what happens behind the scenes:
+When a new episode of a series you're following is released, this tool automatically updates the corresponding entry in your Notion Series page. Here's what happens behind the scenes:
 
 1. **Series Tracking**: You manually add the anime series you are watching to your Notion Series page.
 2. **RSS Feed Monitoring**: Crunchyroll Syncer continually checks the Crunchyroll RSS feed for new episodes of the series you are tracking.
