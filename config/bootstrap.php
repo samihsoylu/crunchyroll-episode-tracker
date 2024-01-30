@@ -13,7 +13,7 @@ $_ENV['APP_CONFIG_DIR'] = $_ENV['ROOT_DIR'] . '/config';
 $_ENV['LOG_DIR'] = $_ENV['ROOT_DIR'] . '/var/log';
 
 $_ENV['APP_NAME'] = 'Crunchyroll';
-$_ENV['APP_VERSION'] = 'v1.0.1';
+$_ENV['APP_VERSION'] = 'v1.0.4';
 
 require_once($_ENV['ROOT_DIR'] . '/vendor/autoload.php');
 
